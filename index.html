@@ -56,7 +56,10 @@
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background-color 0.4s ease, color 0.4s ease, background-image 0.4s ease;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .font-handwriting {
@@ -130,7 +133,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <!-- Site Brand / Title -->
-            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" onclick="openDirectTitleEdit('siteTitle')" title="انقر لتعديل اسم الموقع">
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل اسم الموقع">
                 <div class="p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
                     <i data-lucide="heart-handshake" class="w-6 h-6"></i>
                 </div>
@@ -182,12 +185,6 @@
                     </div>
                 </div>
 
-                <!-- GitHub Deployment Guide Trigger -->
-                <button onclick="toggleModal('githubModal')" class="px-3.5 py-2.5 rounded-xl glass-panel hover:bg-slate-800/50 light:hover:bg-slate-200 transition text-xs font-bold flex items-center space-x-1.5 space-x-reverse text-slate-200 light:text-slate-800">
-                    <i data-lucide="github" class="w-4 h-4"></i>
-                    <span class="hidden sm:inline">نشر الموقع</span>
-                </button>
-
                 <!-- Add Memory Button -->
                 <button onclick="openAddMemoryModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5 space-x-reverse">
                     <i data-lucide="plus-circle" class="w-4.5 h-4.5"></i>
@@ -201,7 +198,7 @@
     <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
 
-        <!-- 1. HERO SECTION -->
+        <!-- HERO SECTION -->
         <section class="relative pt-6 pb-8 text-center flex flex-col items-center justify-center">
             
             <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full glass-panel border border-amber-500/30 text-amber-300 light:text-amber-700 text-xs sm:text-sm font-bold mb-6 animate-float">
@@ -213,12 +210,12 @@
             </div>
 
             <!-- Main Editable Hero Heading -->
-            <h1 id="uiHeroHeading" onclick="openDirectTitleEdit('heroHeading')" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-slate-300 light:from-slate-900 light:via-amber-900 light:to-slate-800 max-w-4xl leading-tight cursor-pointer hover:opacity-80 transition" title="انقر لتعديل العنوان">
+            <h1 id="uiHeroHeading" onclick="openDirectTitleEdit()" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-slate-300 light:from-slate-900 light:via-amber-900 light:to-slate-800 max-w-4xl leading-tight cursor-pointer hover:opacity-80 transition" title="انقر لتعديل العنوان">
                 ذكريات مش ممكن تتنسى!
             </h1>
 
             <!-- Editable Hero Subtitle -->
-            <p id="uiHeroSubtitle" onclick="openDirectTitleEdit('heroSubtitle')" class="mt-4 text-base sm:text-xl text-slate-300 light:text-slate-700 max-w-2xl font-semibold leading-relaxed cursor-pointer hover:text-amber-300 transition" title="انقر لتعديل الوصف">
+            <p id="uiHeroSubtitle" onclick="openDirectTitleEdit()" class="mt-4 text-base sm:text-xl text-slate-300 light:text-slate-700 max-w-2xl font-semibold leading-relaxed cursor-pointer hover:text-amber-300 transition" title="انقر لتعديل الوصف">
                 من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!
             </p>
 
@@ -244,11 +241,11 @@
 
         </section>
 
-        <!-- 2. MEMORY TIMELINE / FEED SECTION -->
+        <!-- MEMORY TIMELINE / FEED SECTION -->
         <section class="space-y-8">
             
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 light:border-slate-200 pb-6">
-                <div class="cursor-pointer group" onclick="openDirectTitleEdit('memoriesHeader')" title="انقر لتعديل العنوان">
+                <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
                     <h2 id="uiMemoriesHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="sparkles" class="w-7 h-7 text-amber-400"></i>
                         <span>حكايات وذكريات بيت المحبة</span>
@@ -258,14 +255,11 @@
 
                 <!-- Search Input & Filters -->
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    
-                    <!-- Search Input -->
                     <div class="relative">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
                         <input type="text" id="searchInput" oninput="handleSearch()" placeholder="دور في الذكريات..." class="w-full sm:w-56 pl-4 pr-9 py-2 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-700/80 light:border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
                     </div>
 
-                    <!-- Category Pills -->
                     <div class="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-2 sm:pb-0 scrollbar-none" id="categoryFilters">
                         <button onclick="filterCategory('الكل')" class="category-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">الكل</button>
                         <button onclick="filterCategory('سفريات وخروجات')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">✈️ سفريات وخروجات</button>
@@ -273,7 +267,6 @@
                         <button onclick="filterCategory('لمة العيلة والصحاب')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">❤️ لمة الصحاب</button>
                         <button onclick="filterCategory('مواقف مش حتنساها')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">😂 مواقف غريبة</button>
                     </div>
-
                 </div>
             </div>
 
@@ -283,10 +276,10 @@
             </div>
         </section>
 
-        <!-- 3. SQUAD SPOTLIGHT SECTION -->
+        <!-- SQUAD SPOTLIGHT SECTION -->
         <section class="space-y-8 pt-8">
             <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-800/80 light:border-slate-200 pb-6 gap-4">
-                <div class="cursor-pointer group" onclick="openDirectTitleEdit('squadHeader')" title="انقر لتعديل العنوان">
+                <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
                     <h2 id="uiSquadHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="crown" class="w-7 h-7 text-amber-400"></i>
                         <span>أبطال بيت المحبة</span>
@@ -307,7 +300,7 @@
 
     </main>
 
-    <!-- FLOATING AMBIENT MUSIC WIDGET -->
+    <!-- FLOATING MUSIC WIDGET -->
     <div class="fixed bottom-6 left-6 z-40">
         <div id="musicPlayer" class="glass-panel p-3 rounded-2xl shadow-2xl border border-slate-700/60 light:border-slate-300 flex items-center space-x-3 space-x-reverse transition-all duration-300 max-w-xs">
             <button id="playAudioBtn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-slate-950 flex items-center justify-center shadow-lg hover:scale-105 transition flex-shrink-0">
@@ -371,7 +364,6 @@
                     <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">صورة الذكرى (ارفع صورة من جهازك)</label>
                     <input type="file" id="formFileInput" accept="image/*" onchange="handleFileUpload(event, 'formImage')" class="w-full px-3 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
                     <input type="hidden" id="formImage">
-                    <p class="text-[10px] text-slate-400 mt-1 font-semibold">تستطيع اختيار صورة مباشرة من جهازك أو موبايلك.</p>
                 </div>
 
                 <div>
@@ -395,7 +387,6 @@
     <!-- MODAL 2: ADD / EDIT SQUAD MEMBER -->
     <div id="squadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
             <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
                 <h3 id="squadModalTitle" class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
                     <i data-lucide="user-plus" class="w-5 h-5 text-purple-400"></i>
@@ -446,7 +437,6 @@
     <!-- MODAL 3: EDIT SITE SETTINGS & BACKGROUND -->
     <div id="editSiteSettingsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
             <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
                 <h3 class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
                     <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
@@ -457,316 +447,156 @@
                 </button>
             </div>
 
-            <form id="settingsForm" onsubmit="handleSettingsSubmit(event)" class="space-y-4">
+            <form onsubmit="handleSiteSettingsSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">اسم الموقع الرئيسي</label>
-                    <input type="text" id="settingSiteTitle" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">اسم الموقع</label>
+                    <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الشعار / السلوجان</label>
+                    <input type="text" id="settingsSiteTagline" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">العنوان الرئيسي (Hero Title)</label>
+                    <input type="text" id="settingsHeroHeading" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الفرعي (Hero Subtitle)</label>
+                    <textarea id="settingsHeroSubtitle" rows="2" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                </div>
+                
+                <!-- Direct Background Image Upload Option -->
+                <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
+                    <label class="block text-xs font-bold text-amber-400 mb-1">🖼️ رفع صورة خلفية خاصة من جهازك</label>
+                    <input type="file" id="bgFileInput" accept="image/*" onchange="handleFileUpload(event, 'settingsCustomBgImage')" class="w-full px-3 py-2 rounded-xl bg-slate-800/80 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
+                    <input type="hidden" id="settingsCustomBgImage">
+                    <p class="text-[10px] text-slate-400 font-semibold">ارفع صورك المفضلة كخلفية للموقع، وسوف تتزامن لجميع الزوار تلقائياً!</p>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الفرعي بالهيدر</label>
-                    <input type="text" id="settingSiteTagline" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">العنوان الرئيسي بالصفحة (Hero Title)</label>
-                    <input type="text" id="settingHeroHeading" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الترحيبي (Hero Subtitle)</label>
-                    <textarea id="settingHeroSubtitle" rows="2" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم الذكريات</label>
-                    <input type="text" id="settingMemoriesHeader" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم أبطال الشلة</label>
-                    <input type="text" id="settingSquadHeader" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
-                </div>
-
-                <!-- Background Customizer -->
-                <div class="pt-2 border-t border-slate-800 light:border-slate-200">
-                    <label class="block text-xs font-bold text-amber-400 mb-2">اختر خلفية الموقع (أو ضع رابط صورة)</label>
-                    <div class="grid grid-cols-3 gap-2 mb-3">
-                        <button type="button" onclick="setBgPreset('bg-preset-stars')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-slate-300 hover:border-amber-400">🌌 نجوم الليل</button>
-                        <button type="button" onclick="setBgPreset('bg-preset-amber')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-amber-400 hover:border-amber-400">🍂 دفا الخريف</button>
-                        <button type="button" onclick="setBgPreset('bg-preset-neon')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-purple-400 hover:border-amber-400">🔮 نيون ساحر</button>
-                    </div>
-
-                    <!-- Quick Unsplash Image Presets -->
-                    <label class="block text-[11px] font-bold text-slate-400 mb-1.5">أو اختر صورة جاهزة عالية الجودة:</label>
-                    <div class="grid grid-cols-3 gap-2 mb-3">
-                        <button type="button" onclick="setCustomBgUrl('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80')" class="p-1.5 rounded-xl border border-slate-700 text-[10px] font-semibold text-slate-300 hover:border-amber-400 truncate">🏔️ جبال ونجوم</button>
-                        <button type="button" onclick="setCustomBgUrl('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80')" class="p-1.5 rounded-xl border border-slate-700 text-[10px] font-semibold text-slate-300 hover:border-amber-400 truncate">🏖️ شاطئ وغروب</button>
-                        <button type="button" onclick="setCustomBgUrl('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1600&q=80')" class="p-1.5 rounded-xl border border-slate-700 text-[10px] font-semibold text-slate-300 hover:border-amber-400 truncate">☕ أجواء سهرة</button>
-                    </div>
-
-                    <label class="block text-[11px] font-bold text-slate-400 mb-1">أو حط رابط صورة خلفية خاصة (URL)</label>
-                    <input type="url" id="settingCustomBg" placeholder="https://images.unsplash.com/photo-..." class="w-full px-4 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold">
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">أو اختر من أنماط الخلفية الجاهزة</label>
+                    <select id="settingsBgPreset" onchange="previewBgPreset(this.value)" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <option value="bg-preset-stars">✨ نجوم وفضاء داكن</option>
+                        <option value="bg-preset-amber">🪵 أخشاب ودفء الشتاء</option>
+                        <option value="bg-preset-neon">🔮 نيون وفخامة نايت</option>
+                    </select>
                 </div>
 
                 <div class="pt-2 flex justify-end space-x-2 space-x-reverse">
                     <button type="button" onclick="toggleModal('editSiteSettingsModal')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">إلغاء</button>
-                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs shadow-lg">حفظ التعديلات للجميع ☁️</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs shadow-lg">تحديث وحفظ ☁️</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL 4: IMAGE ZOOM PREVIEW -->
-    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md hidden opacity-0 transition-opacity duration-300" onclick="toggleModal('imageModal')">
-        <div class="relative max-w-4xl w-full flex flex-col items-center">
-            <img id="zoomImage" src="" alt="صورة الذكرى" class="max-h-[80vh] w-auto rounded-3xl shadow-2xl object-contain border border-slate-700">
-            <p id="zoomCaption" class="mt-4 text-center text-slate-200 text-lg font-black font-amiri"></p>
-        </div>
-    </div>
-
-    <!-- MODAL 5: GITHUB / HOSTING GUIDE -->
-    <div id="githubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
-        <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
-            <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
-                <h3 class="text-xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
-                    <i data-lucide="cloud" class="w-6 h-6 text-purple-400"></i>
-                    <span>تأكيد الربط بالنظام السحابي</span>
-                </h3>
-                <button onclick="toggleModal('githubModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <div class="space-y-4 text-xs sm:text-sm text-slate-300 light:text-slate-700 font-semibold leading-relaxed">
-                <p class="text-emerald-400 font-bold">✨ تم تفعيل الربط السحابي التلقائي (Firebase Database) بنجاح!</p>
-                <p>أي تغيير تعمله على الموقع هنا (تعديل الأسامي، إضافة ذكرى، أو تعديل شلة بيت المحبة) هيظهر فوراً عند كل صحابك اللي فاتحين نفس اللينك بدون ما تحتاج ترفع الملف من جديد!</p>
-                
-                <div class="p-3.5 bg-slate-800/80 border border-slate-700 rounded-2xl text-slate-200 text-xs">
-                    <strong class="text-amber-400">طريقة النشر المجانية:</strong>
-                    <p class="mt-1">تقدر ترفع ملف <code class="text-pink-400 font-bold">index.html</code> ده مباشرة على <b>Netlify</b> أو <b>GitHub Pages</b> أو <b>Vercel</b> وتبعث اللينك لصحابك.</p>
-                </div>
-            </div>
-
-            <div class="pt-2 flex justify-end">
-                <button onclick="toggleModal('githubModal')" class="px-5 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs shadow-lg">عظيم جداً!</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- FIREBASE SERVICES MODULE -->
+    <!-- FIREBASE INITIALIZATION & CORE APPLICATION SCRIPT -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, updateDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
-        // Firebase Setup Config & App Initialization
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'bayt-el-mahabba-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "demo-api-key",
-            authDomain: "demo-app.firebaseapp.com",
-            projectId: "demo-app",
-            storageBucket: "demo-app.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef"
+        const firebaseConfig = {
+            apiKey: "AIzaSyCpY09-pO76VAKalCtqyz22ppxQd_b2Y7M",
+            authDomain: "house-of-memories-19072.firebaseapp.com",
+            projectId: "house-of-memories-19072",
+            storageBucket: "house-of-memories-19072.firebasestorage.app",
+            messagingSenderId: "856417044142",
+            appId: "1:856417044142:web:0f0ae81c0ab4c99b3c8f3f"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Firestore Paths (RULE 1 Compliance)
-        const SETTINGS_DOC_REF = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'siteSettings');
-        const MEMORIES_COLLECTION_REF = collection(db, 'artifacts', appId, 'public', 'data', 'memories');
-        const SQUAD_COLLECTION_REF = collection(db, 'artifacts', appId, 'public', 'data', 'squad');
+        let localMemories = [];
+        let localSquad = [];
+        let activeCategory = 'الكل';
+        let searchQuery = '';
 
-        // Initial Data Fallbacks
-        const DEFAULT_SETTINGS = {
-            siteTitle: 'ذكريات بيت المحبة',
-            siteTagline: 'أيامنا الحلوة ولمة الصحاب 💖',
-            heroHeading: 'ذكريات مش ممكن تتنسى!',
-            heroSubtitle: 'من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!',
-            memoriesHeader: 'حكايات وذكريات بيت المحبة',
-            squadHeader: 'أبطال بيت المحبة',
-            bgPreset: 'bg-preset-stars',
-            customBgUrl: ''
-        };
-
-        const INITIAL_MEMORIES = [
-            {
-                id: '1',
-                title: 'سفرية دهب والملايات الزرقة',
-                date: '2024-07-15',
-                category: 'سفريات وخروجات',
-                location: 'دهب، جنوب سيناء',
-                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-                story: 'قررنا فجأة الساعة 2 بالليل نلم شنطنا ونطلع على دهب. شفنا الشروق على البحر، وأكلنا إندومي محروق وكنا بنغني بعلو صوتنا!',
-                tagged: ['أحمد', 'سارة', 'مينا'],
-                reactions: { love: 18, laugh: 9, magic: 12, core: 15 }
-            },
-            {
-                id: '2',
-                title: 'سهرة قهوة الفيشاوي والضحك للفجر',
-                date: '2024-04-10',
-                category: 'سهر وضحك',
-                location: 'خان الخليلي، الحسين',
-                image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
-                story: 'قعدنا على القهوة وطلبنا شاي بالنعناع، وكالعادة أحمد بدأ يرمي إفيهات والناس كلها كانت بتضحك معانا في الشارع.',
-                tagged: ['أحمد', 'مريم', 'عمر', 'سارة'],
-                reactions: { love: 25, laugh: 30, magic: 8, core: 20 }
-            }
-        ];
-
-        const INITIAL_SQUAD = [
-            {
-                id: '1',
-                name: 'أحمد عبد الله',
-                role: 'مهندس الخروجات 🗺️',
-                quote: '"خمس دقائق وأكون عندكم!" (وبيكون لسه صاحي من النوم)',
-                jokes: ['بيجيب معاه 5 باور بانك في الشنطة', 'بيعرف أجدع أماكن أكل في مصر'],
-                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
-            },
-            {
-                id: '2',
-                name: 'سارة مراد',
-                role: 'DJ الشلة 🎧',
-                quote: '"استنوا.. الأغنية دي لازم نسمعها مع بعض دلوقتي!"',
-                jokes: ['بتشغل أغاني تسعينات الساعة 3 الفجر', 'مبتخليش حد يقلب الأغنية'],
-                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80'
-            }
-        ];
-
-        // Global State
-        window.siteSettings = DEFAULT_SETTINGS;
-        window.memories = [];
-        window.squad = [];
-        window.currentFilter = 'الكل';
-        window.searchQuery = '';
-        let currentUser = null;
-
-        // Authentication Pre-flight Step (RULE 3)
-        async function authenticateUser() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            } catch (err) {
-                console.warn('Auth fallback:', err);
-            }
-        }
-
-        // Initialize Realtime Listeners
-        window.onload = async function() {
-            lucide.createIcons();
-            await authenticateUser();
-
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    currentUser = user;
-                    setupCloudSync();
-                }
+        signInAnonymously(auth)
+            .then(() => {
+                document.getElementById('syncStatusText').innerText = "متصل ومربوط مباشرة ☁️";
+            })
+            .catch((err) => {
+                console.error("Auth error:", err);
+                document.getElementById('syncStatusText').innerText = "وضع أوفلاين مؤقت ⚠️";
             });
-        };
 
-        // Realtime Firestore Subscriptions
-        function setupCloudSync() {
-            // 1. Sync Settings Document
-            onSnapshot(SETTINGS_DOC_REF, (snapshot) => {
-                if (snapshot.exists()) {
-                    window.siteSettings = snapshot.data();
-                } else {
-                    // Seed initial settings
-                    setDoc(SETTINGS_DOC_REF, DEFAULT_SETTINGS);
-                    window.siteSettings = DEFAULT_SETTINGS;
+        // Real-time listener for Settings
+        onSnapshot(doc(db, "settings", "siteConfig"), (snapshot) => {
+            if (snapshot.exists()) {
+                const data = snapshot.data();
+                if (data.siteTitle) {
+                    document.getElementById('uiSiteTitle').innerText = data.siteTitle;
+                    document.getElementById('htmlPageTitle').innerText = data.siteTitle;
+                    document.getElementById('settingsSiteTitle').value = data.siteTitle;
                 }
-                applySiteSettings();
-            }, (error) => console.error("Settings sync error:", error));
-
-            // 2. Sync Memories Collection
-            onSnapshot(MEMORIES_COLLECTION_REF, (snapshot) => {
-                const memList = [];
-                snapshot.forEach(docSnap => {
-                    memList.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                if (memList.length === 0 && snapshot.empty) {
-                    // Seed initial memories
-                    INITIAL_MEMORIES.forEach(m => setDoc(doc(MEMORIES_COLLECTION_REF, m.id), m));
-                    window.memories = INITIAL_MEMORIES;
-                } else {
-                    window.memories = memList;
+                if (data.siteTagline) {
+                    document.getElementById('uiSiteTagline').innerText = data.siteTagline;
+                    document.getElementById('settingsSiteTagline').value = data.siteTagline;
                 }
-                renderMemories();
-                updateStats();
-            }, (error) => console.error("Memories sync error:", error));
-
-            // 3. Sync Squad Collection
-            onSnapshot(SQUAD_COLLECTION_REF, (snapshot) => {
-                const squadList = [];
-                snapshot.forEach(docSnap => {
-                    squadList.push({ id: docSnap.id, ...docSnap.data() });
-                });
-
-                if (squadList.length === 0 && snapshot.empty) {
-                    // Seed initial squad
-                    INITIAL_SQUAD.forEach(s => setDoc(doc(SQUAD_COLLECTION_REF, s.id), s));
-                    window.squad = INITIAL_SQUAD;
-                } else {
-                    window.squad = squadList;
+                if (data.heroHeading) {
+                    document.getElementById('uiHeroHeading').innerText = data.heroHeading;
+                    document.getElementById('settingsHeroHeading').value = data.heroHeading;
                 }
-                renderSquad();
-                updateStats();
-            }, (error) => console.error("Squad sync error:", error));
-        }
-
-        // Apply Site Settings to UI
-        window.applySiteSettings = function() {
-            const s = window.siteSettings || DEFAULT_SETTINGS;
-            document.getElementById('uiSiteTitle').innerText = s.siteTitle || DEFAULT_SETTINGS.siteTitle;
-            document.getElementById('htmlPageTitle').innerText = (s.siteTitle || DEFAULT_SETTINGS.siteTitle) + " | ذكرياتنا الحلوة";
-            document.getElementById('uiSiteTagline').innerText = s.siteTagline || DEFAULT_SETTINGS.siteTagline;
-            document.getElementById('uiHeroHeading').innerText = s.heroHeading || DEFAULT_SETTINGS.heroHeading;
-            document.getElementById('uiHeroSubtitle').innerText = s.heroSubtitle || DEFAULT_SETTINGS.heroSubtitle;
-            document.getElementById('uiMemoriesHeader').querySelector('span').innerText = s.memoriesHeader || DEFAULT_SETTINGS.memoriesHeader;
-            document.getElementById('uiSquadHeader').querySelector('span').innerText = s.squadHeader || DEFAULT_SETTINGS.squadHeader;
-
-            const body = document.getElementById('mainBody');
-            body.className = body.className.replace(/bg-preset-\w+/g, '');
-            
-            if (s.customBgUrl && s.customBgUrl.trim() !== '') {
-                body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('${s.customBgUrl}')`;
-                body.style.backgroundSize = 'cover';
-                body.style.backgroundPosition = 'center';
-            } else {
-                body.style.backgroundImage = '';
-                body.classList.add(s.bgPreset || 'bg-preset-stars');
+                if (data.heroSubtitle) {
+                    document.getElementById('uiHeroSubtitle').innerText = data.heroSubtitle;
+                    document.getElementById('settingsHeroSubtitle').value = data.heroSubtitle;
+                }
+                
+                const body = document.getElementById('mainBody');
+                if (data.customBgImage) {
+                    body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.88)), url('${data.customBgImage}')`;
+                    document.getElementById('settingsCustomBgImage').value = data.customBgImage;
+                } else if (data.bgPreset) {
+                    body.style.backgroundImage = '';
+                    body.className = body.className.replace(/bg-preset-\w+/g, '') + ' ' + data.bgPreset;
+                    document.getElementById('settingsBgPreset').value = data.bgPreset;
+                }
             }
-        };
+        });
 
-        // Render Memories
+        // Real-time listener for Memories
+        onSnapshot(collection(db, "memories"), (snapshot) => {
+            localMemories = [];
+            snapshot.forEach((doc) => {
+                localMemories.push({ id: doc.id, ...doc.data() });
+            });
+            renderMemories();
+            updateStats();
+        });
+
+        // Real-time listener for Squad
+        onSnapshot(collection(db, "squad"), (snapshot) => {
+            localSquad = [];
+            snapshot.forEach((doc) => {
+                localSquad.push({ id: doc.id, ...doc.data() });
+            });
+            renderSquad();
+            updateStats();
+        });
+
+        // UI Render Functions
         window.renderMemories = function() {
             const grid = document.getElementById('memoryGrid');
             grid.innerHTML = '';
 
-            const filtered = window.memories.filter(m => {
-                const matchesCategory = window.currentFilter === 'الكل' || m.category === window.currentFilter;
-                const matchesSearch = window.searchQuery === '' || 
-                    (m.title && m.title.toLowerCase().includes(window.searchQuery.toLowerCase())) ||
-                    (m.story && m.story.toLowerCase().includes(window.searchQuery.toLowerCase())) ||
-                    (m.location && m.location.toLowerCase().includes(window.searchQuery.toLowerCase())) ||
-                    (m.tagged && m.tagged.some(t => t.toLowerCase().includes(window.searchQuery.toLowerCase())));
-                return matchesCategory && matchesSearch;
+            const filtered = localMemories.filter(m => {
+                const matchesCat = activeCategory === 'الكل' || m.category === activeCategory;
+                const matchesSearch = !searchQuery || 
+                    (m.title && m.title.includes(searchQuery)) || 
+                    (m.location && m.location.includes(searchQuery)) || 
+                    (m.story && m.story.includes(searchQuery)) ||
+                    (m.tagged && m.tagged.includes(searchQuery));
+                return matchesCat && matchesSearch;
             });
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 glass-panel rounded-3xl">
-                        <i data-lucide="ghost" class="w-12 h-12 text-amber-400 mx-auto mb-3"></i>
-                        <p class="text-slate-300 font-bold text-sm">مفيش ذكريات للأسف بالاسم أو الفلتر ده!</p>
-                        <button onclick="openAddMemoryModal()" class="mt-3 text-xs text-amber-400 hover:underline font-extrabold">ضيف أول ذكرى هنا</button>
+                    <div class="col-span-full py-12 text-center text-slate-400">
+                        <i data-lucide="ghost" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
+                        <p class="font-bold text-sm">مفيش ذكريات في المكان ده لسه.. ضيف أول ذكرى!</p>
                     </div>
                 `;
                 lucide.createIcons();
@@ -775,256 +605,182 @@
 
             filtered.forEach(m => {
                 const card = document.createElement('div');
-                card.className = "glass-panel rounded-3xl overflow-hidden hover:border-amber-500/40 transition duration-300 flex flex-col group border border-slate-800/80 light:border-slate-200 relative";
-
-                const defaultImg = 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80';
-                const imgSrc = m.image && m.image.trim() !== '' ? m.image : defaultImg;
-
+                card.className = "glass-panel rounded-3xl overflow-hidden border border-slate-800/80 light:border-slate-200 hover:border-amber-500/40 transition duration-300 flex flex-col justify-between group";
+                
+                const taggedBadges = m.tagged ? m.tagged.split('،').map(t => `<span class="px-2 py-0.5 rounded-md bg-slate-800 light:bg-slate-200 text-[10px] font-bold text-amber-300 light:text-amber-700">${t.trim()}</span>`).join(' ') : '';
+                
                 card.innerHTML = `
-                    <div class="absolute top-3 left-3 z-20 flex items-center space-x-1 space-x-reverse opacity-90">
-                        <button onclick="openEditMemoryModal('${m.id}')" class="p-1.5 rounded-lg bg-slate-900/80 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition" title="تعديل الذكرى">
-                            <i data-lucide="edit-3" class="w-4 h-4"></i>
+                    <div>
+                        ${m.image ? `<div class="h-48 overflow-hidden relative"><img src="${m.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"><div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div></div>` : ''}
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between text-[11px] text-amber-400 font-bold">
+                                <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/20">${m.category || 'عام'}</span>
+                                <span>${m.date || ''}</span>
+                            </div>
+                            <h3 class="text-xl font-black text-slate-100 light:text-slate-900 leading-snug">${m.title}</h3>
+                            <p class="text-xs text-slate-300 light:text-slate-700 leading-relaxed font-semibold">${m.story}</p>
+                            ${m.location ? `<div class="text-xs text-slate-400 flex items-center space-x-1 space-x-reverse"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i><span>${m.location}</span></div>` : ''}
+                            ${taggedBadges ? `<div class="pt-2 flex flex-wrap gap-1">${taggedBadges}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 border-t border-slate-800/40 light:border-slate-200/60 flex items-center justify-between">
+                        <button onclick="likeMemory('${m.id}', ${m.likes || 0})" class="flex items-center space-x-1.5 space-x-reverse text-xs font-bold text-rose-400 hover:scale-110 transition">
+                            <i data-lucide="heart" class="w-4 h-4 fill-rose-500/20"></i>
+                            <span>${m.likes || 0}</span>
                         </button>
-                        <button onclick="deleteMemory('${m.id}')" class="p-1.5 rounded-lg bg-slate-900/80 text-rose-400 hover:bg-rose-500 hover:text-white transition" title="مسح الذكرى">
+                        <button onclick="deleteMemory('${m.id}')" class="text-slate-500 hover:text-rose-400 transition" title="مسح الذكرى">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                         </button>
-                    </div>
-
-                    <div class="relative h-52 overflow-hidden bg-slate-900 cursor-pointer" onclick="openZoomImage('${imgSrc}', '${escapeHtml(m.title)}')">
-                        <img src="${imgSrc}" alt="${escapeHtml(m.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='${defaultImg}'">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70"></div>
-                        
-                        <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black tracking-wider bg-slate-900/80 backdrop-blur-md text-amber-300 border border-slate-700">
-                            ${m.category}
-                        </span>
-
-                        <span class="absolute bottom-3 right-3 text-xs font-bold text-slate-200 flex items-center space-x-1 space-x-reverse">
-                            <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-400"></i>
-                            <span>${m.date}</span>
-                        </span>
-                    </div>
-
-                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex items-center space-x-1.5 space-x-reverse text-xs text-amber-400 font-bold mb-1">
-                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                                <span>${escapeHtml(m.location)}</span>
-                            </div>
-                            <h3 class="text-lg font-black text-slate-100 light:text-slate-900 group-hover:text-amber-400 transition">${escapeHtml(m.title)}</h3>
-                            <p class="mt-2 text-xs text-slate-300 light:text-slate-700 leading-relaxed font-semibold">${escapeHtml(m.story)}</p>
-                        </div>
-
-                        <div class="pt-2 border-t border-slate-800/60 light:border-slate-200">
-                            <p class="text-[10px] text-slate-400 font-extrabold mb-1.5">مين حضر اليوم ده؟</p>
-                            <div class="flex flex-wrap gap-1.5">
-                                ${(m.tagged || []).map(name => `
-                                    <span class="px-2 py-0.5 rounded-md bg-slate-800/80 light:bg-slate-200 text-slate-200 light:text-slate-800 text-[10px] font-bold flex items-center space-x-1 space-x-reverse">
-                                        <i data-lucide="user" class="w-2.5 h-2.5 text-rose-400"></i>
-                                        <span>${escapeHtml(name.trim())}</span>
-                                    </span>
-                                `).join('')}
-                            </div>
-                        </div>
-
-                        <div class="pt-3 flex items-center justify-between bg-slate-900/50 light:bg-slate-100/60 p-2.5 rounded-2xl border border-slate-800/50 light:border-slate-200 text-xs">
-                            <button onclick="reactMemory('${m.id}', 'love')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-rose-400">
-                                <span>❤️</span>
-                                <span class="font-extrabold">${m.reactions?.love || 0}</span>
-                            </button>
-                            <button onclick="reactMemory('${m.id}', 'laugh')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-amber-400">
-                                <span>😂</span>
-                                <span class="font-extrabold">${m.reactions?.laugh || 0}</span>
-                            </button>
-                            <button onclick="reactMemory('${m.id}', 'magic')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-purple-400">
-                                <span>🌟</span>
-                                <span class="font-extrabold">${m.reactions?.magic || 0}</span>
-                            </button>
-                            <button onclick="reactMemory('${m.id}', 'core')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-cyan-400">
-                                <span>📸</span>
-                                <span class="font-extrabold">${m.reactions?.core || 0}</span>
-                            </button>
-                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
             });
-
             lucide.createIcons();
         };
 
-        // Render Squad
         window.renderSquad = function() {
             const grid = document.getElementById('squadGrid');
             grid.innerHTML = '';
 
-            window.squad.forEach((s) => {
+            if (localSquad.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-8 text-center text-slate-400">
+                        <p class="font-bold text-xs">ضيف أبطال الشلة هنا عشان تفضل أساميهم متسجلة!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            localSquad.forEach(s => {
                 const card = document.createElement('div');
-                card.className = "glass-panel rounded-3xl p-6 flex flex-col items-center text-center space-y-4 hover:border-purple-500/50 transition duration-300 group relative";
+                card.className = "glass-panel p-5 rounded-3xl border border-slate-800/80 light:border-slate-200 hover:border-purple-500/40 transition duration-300 flex flex-col items-center text-center space-y-3 group relative";
                 
+                const jokesList = s.jokes ? s.jokes.split('\n').map(j => `<li class="text-[11px] text-slate-300 light:text-slate-700 font-semibold">• ${j}</li>`).join('') : '';
+
                 card.innerHTML = `
-                    <div class="absolute top-3 left-3 z-20 flex items-center space-x-1 space-x-reverse">
-                        <button onclick="openEditSquadModal('${s.id}')" class="p-1 rounded-lg bg-slate-900/80 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition" title="تعديل الشخصية">
-                            <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
-                        </button>
-                        <button onclick="deleteSquadMember('${s.id}')" class="p-1 rounded-lg bg-slate-900/80 text-rose-400 hover:bg-rose-500 hover:text-white transition" title="مسح الصديق">
-                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-                        </button>
+                    <button onclick="deleteSquad('${s.id}')" class="absolute top-4 left-4 text-slate-600 hover:text-rose-400 transition opacity-0 group-hover:opacity-100">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-tr from-purple-500 to-amber-500 p-0.5 shadow-lg group-hover:scale-105 transition">
+                        <img src="${s.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}" class="w-full h-full object-cover rounded-[14px]">
                     </div>
-
-                    <div class="relative">
-                        <img src="${s.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}" alt="${s.name}" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-purple-500/40 group-hover:ring-amber-400 transition duration-300">
-                        <span class="absolute -bottom-2 -left-2 bg-slate-900 light:bg-white p-1 rounded-lg text-xs shadow-md">✨</span>
-                    </div>
-
                     <div>
-                        <h3 class="text-base font-black text-slate-100 light:text-slate-900">${escapeHtml(s.name)}</h3>
-                        <p class="text-xs text-amber-400 font-extrabold mt-0.5">${escapeHtml(s.role)}</p>
+                        <h4 class="font-black text-base text-slate-100 light:text-slate-900">${s.name}</h4>
+                        <span class="text-[11px] font-bold text-purple-400 light:text-purple-600">${s.role}</span>
                     </div>
-
-                    <p class="text-xs italic text-slate-300 light:text-slate-700 font-amiri font-bold text-base leading-snug">
-                        ${escapeHtml(s.quote)}
-                    </p>
-
-                    <div class="w-full pt-3 border-t border-slate-800 light:border-slate-200 text-right">
-                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1">قفشات ومواقف عنه</p>
-                        <ul class="space-y-1">
-                            ${(s.jokes || []).map(j => `
-                                <li class="text-[11px] text-slate-300 light:text-slate-700 font-bold flex items-start space-x-1.5 space-x-reverse">
-                                    <span class="text-amber-400">•</span>
-                                    <span>${escapeHtml(j)}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    </div>
+                    ${s.quote ? `<p class="text-xs italic font-handwriting text-amber-300 light:text-amber-700 font-bold bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/20">"${s.quote}"</p>` : ''}
+                    ${jokesList ? `<ul class="text-right w-full space-y-1 pt-1 border-t border-slate-800/50 light:border-slate-200">${jokesList}</ul>` : ''}
                 `;
                 grid.appendChild(card);
             });
-
             lucide.createIcons();
         };
 
-        // Form Submission Handlers
+        window.updateStats = function() {
+            document.getElementById('statTotalMemories').innerText = localMemories.length;
+            document.getElementById('statFriendsCount').innerText = localSquad.length;
+            const trips = localMemories.filter(m => m.category === 'سفريات وخروجات').length;
+            document.getElementById('statTripsCount').innerText = trips;
+        };
+
+        // Handlers
         window.handleMemorySubmit = async function(e) {
             e.preventDefault();
-            if (!currentUser) return;
-
-            const memoryId = document.getElementById('formMemoryId').value || Date.now().toString();
-            const title = document.getElementById('formTitle').value;
-            const date = document.getElementById('formDate').value;
-            const category = document.getElementById('formCategory').value;
-            const location = document.getElementById('formLocation').value;
-            const image = document.getElementById('formImage').value;
-            const taggedInput = document.getElementById('formTagged').value;
-            const story = document.getElementById('formStory').value;
-
-            const tagged = taggedInput ? taggedInput.split(',') : ['شلة بيت المحبة'];
-
-            const existing = window.memories.find(m => m.id === memoryId);
             const memoryData = {
-                id: memoryId,
-                title, date, category, location, image, story, tagged,
-                reactions: existing ? existing.reactions : { love: 1, laugh: 1, magic: 1, core: 1 }
+                title: document.getElementById('formTitle').value,
+                date: document.getElementById('formDate').value,
+                category: document.getElementById('formCategory').value,
+                location: document.getElementById('formLocation').value,
+                image: document.getElementById('formImage').value,
+                tagged: document.getElementById('formTagged').value,
+                story: document.getElementById('formStory').value,
+                likes: 0,
+                createdAt: new Date().toISOString()
             };
 
-            await setDoc(doc(MEMORIES_COLLECTION_REF, memoryId), memoryData);
+            await addDoc(collection(db, "memories"), memoryData);
             toggleModal('memoryModal');
+            document.getElementById('memoryForm').reset();
+            document.getElementById('formImage').value = '';
         };
 
         window.handleSquadSubmit = async function(e) {
             e.preventDefault();
-            if (!currentUser) return;
-
-            const squadId = document.getElementById('formSquadId').value || Date.now().toString();
-            const name = document.getElementById('squadName').value;
-            const role = document.getElementById('squadRole').value;
-            const avatar = document.getElementById('squadAvatar').value;
-            const quote = document.getElementById('squadQuote').value;
-            const jokesText = document.getElementById('squadJokes').value;
-
-            const jokes = jokesText ? jokesText.split('\n').filter(j => j.trim() !== '') : ['صاحب جدع ومعانا في أي مكان'];
-
-            const memberData = { id: squadId, name, role, avatar, quote, jokes };
-            await setDoc(doc(SQUAD_COLLECTION_REF, squadId), memberData);
-            toggleModal('squadModal');
-        };
-
-        window.handleSettingsSubmit = async function(e) {
-            e.preventDefault();
-            if (!currentUser) return;
-
-            const newSettings = {
-                siteTitle: document.getElementById('settingSiteTitle').value,
-                siteTagline: document.getElementById('settingSiteTagline').value,
-                heroHeading: document.getElementById('settingHeroHeading').value,
-                heroSubtitle: document.getElementById('settingHeroSubtitle').value,
-                memoriesHeader: document.getElementById('settingMemoriesHeader').value,
-                squadHeader: document.getElementById('settingSquadHeader').value,
-                customBgUrl: document.getElementById('settingCustomBg').value,
-                bgPreset: window.siteSettings.bgPreset || 'bg-preset-stars'
+            const squadData = {
+                name: document.getElementById('squadName').value,
+                role: document.getElementById('squadRole').value,
+                avatar: document.getElementById('squadAvatar').value,
+                quote: document.getElementById('squadQuote').value,
+                jokes: document.getElementById('squadJokes').value
             };
 
-            await setDoc(SETTINGS_DOC_REF, newSettings);
+            await addDoc(collection(db, "squad"), squadData);
+            toggleModal('squadModal');
+            document.getElementById('squadForm').reset();
+            document.getElementById('squadAvatar').value = '';
+        };
+
+        window.handleSiteSettingsSubmit = async function(e) {
+            e.preventDefault();
+            const customBg = document.getElementById('settingsCustomBgImage').value;
+            const settingsData = {
+                siteTitle: document.getElementById('settingsSiteTitle').value,
+                siteTagline: document.getElementById('settingsSiteTagline').value,
+                heroHeading: document.getElementById('settingsHeroHeading').value,
+                heroSubtitle: document.getElementById('settingsHeroSubtitle').value,
+                bgPreset: document.getElementById('settingsBgPreset').value,
+                customBgImage: customBg || ''
+            };
+
+            await setDoc(doc(db, "settings", "siteConfig"), settingsData, { merge: true });
             toggleModal('editSiteSettingsModal');
         };
 
-        window.reactMemory = async function(id, type) {
-            if (!currentUser) return;
-            const mem = window.memories.find(m => m.id === id);
-            if (mem) {
-                const reactions = mem.reactions || { love: 0, laugh: 0, magic: 0, core: 0 };
-                reactions[type] = (reactions[type] || 0) + 1;
-                await updateDoc(doc(MEMORIES_COLLECTION_REF, id), { reactions });
-            }
+        window.likeMemory = async function(id, currentLikes) {
+            await updateDoc(doc(db, "memories", id), { likes: currentLikes + 1 });
         };
 
         window.deleteMemory = async function(id) {
-            if (!currentUser) return;
-            if (confirm('تأكيد مسح الذكرى دي من الأرشيف للجميع؟')) {
-                const { deleteDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
-                await deleteDoc(doc(MEMORIES_COLLECTION_REF, id));
+            if (confirm("تأكيد مسح هذه الذكرى؟")) {
+                await deleteDoc(doc(db, "memories", id));
             }
         };
 
-        window.deleteSquadMember = async function(id) {
-            if (!currentUser) return;
-            if (confirm('تأكيد مسح الصديق ده من القائمة للجميع؟')) {
-                const { deleteDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
-                await deleteDoc(doc(SQUAD_COLLECTION_REF, id));
+        window.deleteSquad = async function(id) {
+            if (confirm("تأكيد مسح الشخصية؟")) {
+                await deleteDoc(doc(db, "squad", id));
             }
         };
-    </script>
 
-    <!-- UI DOM HELPER LOGIC -->
-    <script>
-        function handleFileUpload(event, targetInputId) {
+        window.filterCategory = function(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.innerText.includes(cat) || (cat === 'الكل' && btn.innerText === 'الكل')) {
+                    btn.className = "category-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+                } else {
+                    btn.className = "category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800";
+                }
+            });
+            renderMemories();
+        };
+
+        window.handleSearch = function() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            renderMemories();
+        };
+
+        window.handleFileUpload = function(event, targetHiddenId) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
-                document.getElementById(targetInputId).value = e.target.result;
+                document.getElementById(targetHiddenId).value = e.target.result;
             };
             reader.readAsDataURL(file);
-        }
+        };
 
-        function setCustomBgUrl(url) {
-            document.getElementById('settingCustomBg').value = url;
-            if (!window.siteSettings) window.siteSettings = {};
-            window.siteSettings.customBgUrl = url;
-            window.applySiteSettings();
-        }
-
-        function setBgPreset(preset) {
-            document.getElementById('settingCustomBg').value = '';
-            if (!window.siteSettings) window.siteSettings = {};
-            window.siteSettings.customBgUrl = '';
-            window.siteSettings.bgPreset = preset;
-            window.applySiteSettings();
-        }
-
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (!modal) return;
+        window.toggleModal = function(id) {
+            const modal = document.getElementById(id);
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
                 setTimeout(() => modal.classList.remove('opacity-0'), 10);
@@ -1032,128 +788,38 @@
                 modal.classList.add('opacity-0');
                 setTimeout(() => modal.classList.add('hidden'), 300);
             }
-        }
+        };
 
-        function openAddMemoryModal() {
-            document.getElementById('memoryModalTitle').innerText = 'تسجيل ذكرى جديدة';
-            document.getElementById('formMemoryId').value = '';
-            document.getElementById('formTitle').value = '';
-            document.getElementById('formDate').value = new Date().toISOString().split('T')[0];
-            document.getElementById('formCategory').value = 'سفريات وخروجات';
-            document.getElementById('formLocation').value = '';
-            document.getElementById('formImage').value = '';
-            document.getElementById('formFileInput').value = '';
-            document.getElementById('formTagged').value = '';
-            document.getElementById('formStory').value = '';
+        window.openAddMemoryModal = function() {
             toggleModal('memoryModal');
-        }
+        };
 
-        function openEditMemoryModal(id) {
-            const m = window.memories.find(item => item.id === id);
-            if (!m) return;
-            document.getElementById('memoryModalTitle').innerText = 'تعديل الذكرى';
-            document.getElementById('formMemoryId').value = m.id;
-            document.getElementById('formTitle').value = m.title || '';
-            document.getElementById('formDate').value = m.date || '';
-            document.getElementById('formCategory').value = m.category || 'سفريات وخروجات';
-            document.getElementById('formLocation').value = m.location || '';
-            document.getElementById('formImage').value = m.image || '';
-            document.getElementById('formFileInput').value = '';
-            document.getElementById('formTagged').value = m.tagged ? m.tagged.join(', ') : '';
-            document.getElementById('formStory').value = m.story || '';
-            toggleModal('memoryModal');
-        }
-
-        function openAddSquadModal() {
-            document.getElementById('squadModalTitle').innerText = 'إضافة صاحب جديد';
-            document.getElementById('formSquadId').value = '';
-            document.getElementById('squadName').value = '';
-            document.getElementById('squadRole').value = '';
-            document.getElementById('squadAvatar').value = '';
-            document.getElementById('squadFileInput').value = '';
-            document.getElementById('squadQuote').value = '';
-            document.getElementById('squadJokes').value = '';
+        window.openAddSquadModal = function() {
             toggleModal('squadModal');
-        }
+        };
 
-        function openEditSquadModal(id) {
-            const s = window.squad.find(item => item.id === id);
-            if (!s) return;
-            document.getElementById('squadModalTitle').innerText = 'تعديل بيانات الصديق';
-            document.getElementById('formSquadId').value = s.id;
-            document.getElementById('squadName').value = s.name || '';
-            document.getElementById('squadRole').value = s.role || '';
-            document.getElementById('squadAvatar').value = s.avatar || '';
-            document.getElementById('squadFileInput').value = '';
-            document.getElementById('squadQuote').value = s.quote || '';
-            document.getElementById('squadJokes').value = s.jokes ? s.jokes.join('\n') : '';
-            toggleModal('squadModal');
-        }
-
-        function openDirectTitleEdit(target) {
-            const s = window.siteSettings || {};
-            document.getElementById('settingSiteTitle').value = s.siteTitle || 'ذكريات بيت المحبة';
-            document.getElementById('settingSiteTagline').value = s.siteTagline || 'أيامنا الحلوة ولمة الصحاب 💖';
-            document.getElementById('settingHeroHeading').value = s.heroHeading || 'ذكريات مش ممكن تتنسى!';
-            document.getElementById('settingHeroSubtitle').value = s.heroSubtitle || 'من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!';
-            document.getElementById('settingMemoriesHeader').value = s.memoriesHeader || 'حكايات وذكريات بيت المحبة';
-            document.getElementById('settingSquadHeader').value = s.squadHeader || 'أبطال بيت المحبة';
-            document.getElementById('settingCustomBg').value = s.customBgUrl || '';
-            
+        window.openDirectTitleEdit = function() {
             toggleModal('editSiteSettingsModal');
+        };
 
-            setTimeout(() => {
-                if (target === 'siteTitle') document.getElementById('settingSiteTitle').focus();
-                else if (target === 'heroHeading') document.getElementById('settingHeroHeading').focus();
-                else if (target === 'heroSubtitle') document.getElementById('settingHeroSubtitle').focus();
-                else if (target === 'memoriesHeader') document.getElementById('settingMemoriesHeader').focus();
-                else if (target === 'squadHeader') document.getElementById('settingSquadHeader').focus();
-            }, 150);
-        }
+        window.setTheme = function(theme) {
+            const html = document.documentElement;
+            html.classList.remove('light', 'dark', 'nostalgic-theme');
+            if (theme === 'light') html.classList.add('light');
+            else if (theme === 'dark') html.classList.add('dark');
+            else if (theme === 'nostalgic') html.classList.add('nostalgic-theme');
+        };
 
-        function filterCategory(cat) {
-            window.currentFilter = cat;
-            document.querySelectorAll('#categoryFilters button').forEach(btn => {
-                if (btn.innerText.includes(cat)) {
-                    btn.className = 'category-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20';
-                } else {
-                    btn.className = 'category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800';
-                }
-            });
-            window.renderMemories();
-        }
+        window.previewBgPreset = function(preset) {
+            const body = document.getElementById('mainBody');
+            body.style.backgroundImage = '';
+            body.className = body.className.replace(/bg-preset-\w+/g, '') + ' ' + preset;
+        };
 
-        function handleSearch() {
-            window.searchQuery = document.getElementById('searchInput').value;
-            window.renderMemories();
-        }
-
-        function updateStats() {
-            document.getElementById('statTotalMemories').innerText = (window.memories || []).length;
-            document.getElementById('statFriendsCount').innerText = (window.squad || []).length;
-            
-            const trips = (window.memories || []).filter(m => m.category === 'سفريات وخروجات').length;
-            document.getElementById('statTripsCount').innerText = trips;
-        }
-
-        function setTheme(theme) {
-            const body = document.documentElement;
-            body.classList.remove('dark', 'light', 'nostalgic-theme');
-            
-            if (theme === 'light') {
-                body.classList.add('light');
-            } else if (theme === 'nostalgic') {
-                body.classList.add('nostalgic-theme');
-            } else {
-                body.classList.add('dark');
-            }
-        }
-
-        function toggleAudio() {
+        window.toggleAudio = function() {
             const audio = document.getElementById('bgAudio');
             const playIcon = document.getElementById('playIcon');
             const pauseIcon = document.getElementById('pauseIcon');
-
             if (audio.paused) {
                 audio.play();
                 playIcon.classList.add('hidden');
@@ -1163,23 +829,9 @@
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
             }
-        }
+        };
 
-        function openZoomImage(src, caption) {
-            document.getElementById('zoomImage').src = src;
-            document.getElementById('zoomCaption').innerText = caption;
-            toggleModal('imageModal');
-        }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            return String(text)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
+        lucide.createIcons();
     </script>
 </body>
 </html>
