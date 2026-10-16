@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="htmlPageTitle">ذكريات بيت المحبة | حكايتنا وأيامنا الحلوة</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        amiri: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        egyptianGold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            900: '#78350f',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 5s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.3', filter: 'blur(30px)' },
+                            '50%': { opacity: '0.7', filter: 'blur(45px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Cairo & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .font-handwriting {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nostalgic-theme {
+            background-color: #fbf5e8 !important;
+            color: #3e3228 !important;
+        }
+
+        .nostalgic-theme .glass-panel {
+            background: rgba(245, 236, 220, 0.9) !important;
+            border: 1px solid rgba(180, 140, 100, 0.25) !important;
+            box-shadow: 0 10px 30px -10px rgba(120, 80, 40, 0.12);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(156, 163, 175, 0.4);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(156, 163, 175, 0.7);
+        }
+
+        /* Background Presets */
+        .bg-preset-stars {
+            background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15), rgba(15, 23, 42, 0.98)), radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.15), rgba(15, 23, 42, 1));
+        }
+        .bg-preset-amber {
+            background-image: linear-gradient(to bottom right, #2d1800, #1a0f02, #0d0600);
+        }
+        .bg-preset-neon {
+            background-image: linear-gradient(to bottom right, #090d16, #111827, #1e1028);
+        }
+    </style>
+</head>
+<body id="mainBody" class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden transition-all duration-500 bg-preset-stars">
+
+    <!-- Dynamic Glowing Ambient Blobs -->
+    <div id="ambientBlobs">
+        <div class="fixed top-0 right-1/4 w-96 h-96 bg-purple-600/25 rounded-full animate-pulse-glow pointer-events-none -z-10"></div>
+        <div class="fixed top-1/3 left-10 w-96 h-96 bg-amber-500/20 rounded-full animate-pulse-glow pointer-events-none -z-10" style="animation-delay: 1.5s;"></div>
+        <div class="fixed bottom-10 right-10 w-80 h-80 bg-emerald-500/20 rounded-full animate-pulse-glow pointer-events-none -z-10" style="animation-delay: 3s;"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/70 dark:bg-slate-950/70 light:bg-white/80 border-b border-slate-800/80 light:border-slate-200 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Site Brand / Title -->
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" onclick="openDirectTitleEdit('siteTitle')" title="انقر لتعديل اسم الموقع">
+                <div class="p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
+                    <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 id="uiSiteTitle" class="text-xl sm:text-2xl font-black tracking-tight text-slate-100 dark:text-white light:text-slate-900 transition-colors group-hover:text-amber-400">
+                        ذكريات بيت المحبة
+                    </h1>
+                    <p id="uiSiteTagline" class="text-xs text-amber-400 dark:text-amber-400 light:text-amber-600 font-bold">
+                        أيامنا الحلوة ولمة الصحاب 💖
+                    </p>
+                </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-2 sm:space-x-3 space-x-reverse">
+                
+                <!-- Quick Customize Titles & Background -->
+                <button onclick="toggleModal('editSiteSettingsModal')" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/60 light:hover:bg-slate-200 transition text-amber-400 flex items-center space-x-1 space-x-reverse" title="تعديل عناوين وخلفية الموقع">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span class="hidden md:inline text-xs font-bold mr-1">تنسيق الموقع</span>
+                </button>
+
+                <!-- Theme Switcher -->
+                <div class="relative group">
+                    <button id="themeToggleBtn" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/50 light:hover:bg-slate-200 transition text-slate-300 light:text-slate-700 flex items-center space-x-1" title="تغيير المظهر">
+                        <i data-lucide="sun" class="w-5 h-5 hidden light:block"></i>
+                        <i data-lucide="moon" class="w-5 h-5 block dark:block light:hidden"></i>
+                    </button>
+                    <!-- Dropdown -->
+                    <div class="absolute left-0 mt-2 w-40 py-2 bg-slate-900 light:bg-white border border-slate-800 light:border-slate-200 rounded-2xl shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
+                        <button onclick="setTheme('dark')" class="w-full text-right px-4 py-2 text-xs flex items-center space-x-2 space-x-reverse text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100 font-semibold">
+                            <i data-lucide="moon" class="w-4 h-4"></i>
+                            <span>وضع ليلي</span>
+                        </button>
+                        <button onclick="setTheme('light')" class="w-full text-right px-4 py-2 text-xs flex items-center space-x-2 space-x-reverse text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100 font-semibold">
+                            <i data-lucide="sun" class="w-4 h-4"></i>
+                            <span>وضع نهاري</span>
+                        </button>
+                        <button onclick="setTheme('nostalgic')" class="w-full text-right px-4 py-2 text-xs flex items-center space-x-2 space-x-reverse text-amber-500 hover:bg-amber-500/10 font-semibold">
+                            <i data-lucide="coffee" class="w-4 h-4"></i>
+                            <span>دفا زمان (Nostalgic)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- GitHub Deployment Guide Trigger -->
+                <button onclick="toggleModal('githubModal')" class="px-3.5 py-2.5 rounded-xl glass-panel hover:bg-slate-800/50 light:hover:bg-slate-200 transition text-xs font-bold flex items-center space-x-1.5 space-x-reverse text-slate-200 light:text-slate-800">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">نشر الموقع</span>
+                </button>
+
+                <!-- Add Memory Button -->
+                <button onclick="openAddMemoryModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5 space-x-reverse">
+                    <i data-lucide="plus-circle" class="w-4.5 h-4.5"></i>
+                    <span>ضيف ذكرى جديدة</span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+
+        <!-- 1. HERO SECTION -->
+        <section class="relative pt-6 pb-8 text-center flex flex-col items-center justify-center">
+            
+            <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full glass-panel border border-amber-500/30 text-amber-300 light:text-amber-700 text-xs sm:text-sm font-bold mb-6 animate-float">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+                </span>
+                <span>الأرشيف الرسمي لأجدع صحاب وشلة بيت المحبة</span>
+            </div>
+
+            <!-- Main Editable Hero Heading -->
+            <h1 id="uiHeroHeading" onclick="openDirectTitleEdit('heroHeading')" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-slate-300 light:from-slate-900 light:via-amber-900 light:to-slate-800 max-w-4xl leading-tight cursor-pointer hover:opacity-80 transition" title="انقر لتعديل العنوان">
+                ذكريات مش ممكن تتنسى!
+            </h1>
+
+            <!-- Editable Hero Subtitle -->
+            <p id="uiHeroSubtitle" onclick="openDirectTitleEdit('heroSubtitle')" class="mt-4 text-base sm:text-xl text-slate-300 light:text-slate-700 max-w-2xl font-semibold leading-relaxed cursor-pointer hover:text-amber-300 transition" title="انقر لتعديل الوصف">
+                من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!
+            </p>
+
+            <!-- Counter Stats Bar -->
+            <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
+                <div class="glass-panel p-5 rounded-3xl text-center border border-amber-500/20 hover:scale-105 transition duration-300">
+                    <div id="statTotalMemories" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-rose-400">0</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">ذكرى متسجلة</div>
+                </div>
+                <div class="glass-panel p-5 rounded-3xl text-center border border-purple-500/20 hover:scale-105 transition duration-300">
+                    <div id="statFriendsCount" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">0</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">أبطال الشلة</div>
+                </div>
+                <div class="glass-panel p-5 rounded-3xl text-center border border-rose-500/20 hover:scale-105 transition duration-300">
+                    <div id="statTripsCount" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400">0</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">سفرية وخروجة</div>
+                </div>
+                <div class="glass-panel p-5 rounded-3xl text-center border border-emerald-500/20 hover:scale-105 transition duration-300">
+                    <div class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-400">∞</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">ضحك وقفشات</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 2. MEMORY TIMELINE / FEED SECTION -->
+        <section class="space-y-8">
+            
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 light:border-slate-200 pb-6">
+                <div class="cursor-pointer group" onclick="openDirectTitleEdit('memoriesHeader')" title="انقر لتعديل العنوان">
+                    <h2 id="uiMemoriesHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
+                        <i data-lucide="sparkles" class="w-7 h-7 text-amber-400"></i>
+                        <span>حكايات وذكريات بيت المحبة</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">تصفح الذكريات، دور بالاسم، أو فلتر حسب نوع الخروجة</p>
+                </div>
+
+                <!-- Search Input & Filters -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    
+                    <!-- Search Input -->
+                    <div class="relative">
+                        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="دور في الذكريات..." class="w-full sm:w-56 pl-4 pr-9 py-2 rounded-xl bg-slate-900/80 light:bg-slate-100 border border-slate-700/80 light:border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="flex items-center space-x-2 space-x-reverse overflow-x-auto pb-2 sm:pb-0 scrollbar-none" id="categoryFilters">
+                        <button onclick="filterCategory('الكل')" class="category-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">الكل</button>
+                        <button onclick="filterCategory('سفريات وخروجات')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">✈️ سفريات وخروجات</button>
+                        <button onclick="filterCategory('سهر وضحك')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">🌙 سهر وضحك</button>
+                        <button onclick="filterCategory('لمة العيلة والصحاب')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">❤️ لمة الصحاب</button>
+                        <button onclick="filterCategory('مواقف مش حتنساها')" class="category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800">😂 مواقف غريبة</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Memories Grid -->
+            <div id="memoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Memory Cards Rendered Dynamically -->
+            </div>
+        </section>
+
+        <!-- 3. SQUAD SPOTLIGHT SECTION -->
+        <section class="space-y-8 pt-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-800/80 light:border-slate-200 pb-6 gap-4">
+                <div class="cursor-pointer group" onclick="openDirectTitleEdit('squadHeader')" title="انقر لتعديل العنوان">
+                    <h2 id="uiSquadHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
+                        <i data-lucide="crown" class="w-7 h-7 text-amber-400"></i>
+                        <span>أبطال بيت المحبة</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">الناس الجدعان اللي من غيرهم القعدة مالهاش طعم</p>
+                </div>
+
+                <button onclick="openAddSquadModal()" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md transition flex items-center space-x-1.5 space-x-reverse">
+                    <i data-lucide="user-plus" class="w-4 h-4"></i>
+                    <span>ضيف صاحب جديد</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="squadGrid">
+                <!-- Squad Cards Rendered Dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING AMBIENT MUSIC WIDGET -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <div id="musicPlayer" class="glass-panel p-3 rounded-2xl shadow-2xl border border-slate-700/60 light:border-slate-300 flex items-center space-x-3 space-x-reverse transition-all duration-300 max-w-xs">
+            <button id="playAudioBtn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-slate-950 flex items-center justify-center shadow-lg hover:scale-105 transition flex-shrink-0">
+                <i data-lucide="play" id="playIcon" class="w-5 h-5"></i>
+                <i data-lucide="pause" id="pauseIcon" class="w-5 h-5 hidden"></i>
+            </button>
+            <div class="overflow-hidden">
+                <p id="trackTitle" class="text-xs font-bold text-slate-200 light:text-slate-800 truncate">موسيقى هادية ورايقة 🎵</p>
+                <p class="text-[10px] text-amber-400 light:text-amber-600 font-semibold truncate">أجواء زمان وذكريات</p>
+            </div>
+            <audio id="bgAudio" loop preload="none">
+                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <!-- MODAL 1: ADD / EDIT MEMORY -->
+    <div id="memoryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
+                <h3 id="memoryModalTitle" class="text-lg sm:text-xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
+                    <i data-lucide="plus-circle" class="w-6 h-6 text-amber-400"></i>
+                    <span>تسجيل ذكرى جديدة</span>
+                </h3>
+                <button onclick="toggleModal('memoryModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <form id="memoryForm" onsubmit="handleMemorySubmit(event)" class="space-y-4">
+                <input type="hidden" id="formMemoryId">
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان الذكرى أو الخروجة</label>
+                    <input type="text" id="formTitle" required placeholder="مثال: عشاء المشويات ورأس البر" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">التاريخ</label>
+                        <input type="date" id="formDate" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">نوع الذكرى</label>
+                        <select id="formCategory" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            <option value="سفريات وخروجات">✈️ سفريات وخروجات</option>
+                            <option value="سهر وضحك">🌙 سهر وضحك</option>
+                            <option value="لمة العيلة والصحاب">❤️ لمة الصحاب</option>
+                            <option value="مواقف مش حتنساها">😂 مواقف غريبة</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">المكان</label>
+                    <input type="text" id="formLocation" required placeholder="مثال: قهوة الفيشاوي، خان الخليلي" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">رابط الصورة (اختياري)</label>
+                    <input type="url" id="formImage" placeholder="https://..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <p class="text-[10px] text-slate-400 mt-1 font-semibold">لو سبته فاضي، هينزل صورة تعبيرية شكلها حلو تلقائياً.</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">مين كان موجود؟ (افصل بفاصلة)</label>
+                    <input type="text" id="formTagged" placeholder="أحمد، مينا، سارة، مريم" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">حكاية اليوم والذكرى</label>
+                    <textarea id="formStory" rows="3" required placeholder="احكي إيه اللي حصل والقفشات اللي اتقالت..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2 space-x-reverse">
+                    <button type="button" onclick="toggleModal('memoryModal')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">إلغاء</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 text-slate-950 font-black text-xs shadow-lg">حفظ الذكرى</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: ADD / EDIT SQUAD MEMBER -->
+    <div id="squadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
+                <h3 id="squadModalTitle" class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
+                    <i data-lucide="user-plus" class="w-5 h-5 text-purple-400"></i>
+                    <span>إضافة صاحب جديد</span>
+                </h3>
+                <button onclick="toggleModal('squadModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <form id="squadForm" onsubmit="handleSquadSubmit(event)" class="space-y-4">
+                <input type="hidden" id="formSquadIndex">
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الاسم</label>
+                    <input type="text" id="squadName" required placeholder="مثال: أحمد عبد الله" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">لقبه في الشلة</label>
+                    <input type="text" id="squadRole" required placeholder="مثال: مهندس الخروجات 🗺️ / طباخ الشلة 👨‍🍳" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">رابط الصورة الشخصية</label>
+                    <input type="url" id="squadAvatar" placeholder="https://..." class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">إفيه مشهور بيه / مقولته الشهيرة</label>
+                    <input type="text" id="squadQuote" required placeholder='مثال: "خمس دقائق وأكون عندكم!" (وبيكون لسه صاحي)' class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">قفشات ومواقف عنه (كل سطر موقف)</label>
+                    <textarea id="squadJokes" rows="3" required placeholder="بيجيب معاه 10 باور بانك&#10;بيطلب دايماً تحلية قبل الأكل" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2 space-x-reverse">
+                    <button type="button" onclick="toggleModal('squadModal')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">إلغاء</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-black text-xs shadow-lg">حفظ البيانات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: EDIT SITE SETTINGS & BACKGROUND -->
+    <div id="editSiteSettingsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
+                <h3 class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
+                    <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
+                    <span>تخصيص عناوين وخلفية الموقع</span>
+                </h3>
+                <button onclick="toggleModal('editSiteSettingsModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <form id="settingsForm" onsubmit="handleSettingsSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">اسم الموقع الرئيسي</label>
+                    <input type="text" id="settingSiteTitle" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الفرعي بالهيدر</label>
+                    <input type="text" id="settingSiteTagline" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">العنوان الرئيسي بالصفحة (Hero Title)</label>
+                    <input type="text" id="settingHeroHeading" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الترحيبي (Hero Subtitle)</label>
+                    <textarea id="settingHeroSubtitle" rows="2" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم الذكريات</label>
+                    <input type="text" id="settingMemoriesHeader" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم أبطال الشلة</label>
+                    <input type="text" id="settingSquadHeader" required class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+
+                <!-- Background Customizer -->
+                <div class="pt-2 border-t border-slate-800 light:border-slate-200">
+                    <label class="block text-xs font-bold text-amber-400 mb-2">اختر خلفية الموقع</label>
+                    <div class="grid grid-cols-3 gap-2 mb-3">
+                        <button type="button" onclick="setBgPreset('bg-preset-stars')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-slate-300 hover:border-amber-400">🌌 نجوم الليل</button>
+                        <button type="button" onclick="setBgPreset('bg-preset-amber')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-amber-400 hover:border-amber-400">🍂 دفا الخريف</button>
+                        <button type="button" onclick="setBgPreset('bg-preset-neon')" class="p-2 rounded-xl border border-slate-700 text-[11px] font-bold text-purple-400 hover:border-amber-400">🔮 نيون ساحر</button>
+                    </div>
+                    <label class="block text-[11px] font-bold text-slate-400 mb-1">أو حط رابط صورة خلفية خاصة (URL)</label>
+                    <input type="url" id="settingCustomBg" placeholder="https://images.unsplash.com/photo-..." class="w-full px-4 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold">
+                </div>
+
+                <div class="pt-2 flex justify-end space-x-2 space-x-reverse">
+                    <button type="button" onclick="toggleModal('editSiteSettingsModal')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:bg-slate-800">إلغاء</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs shadow-lg">حفظ التعديلات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: IMAGE ZOOM PREVIEW -->
+    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-md hidden opacity-0 transition-opacity duration-300" onclick="toggleModal('imageModal')">
+        <div class="relative max-w-4xl w-full flex flex-col items-center">
+            <img id="zoomImage" src="" alt="صورة الذكرى" class="max-h-[80vh] w-auto rounded-3xl shadow-2xl object-contain border border-slate-700">
+            <p id="zoomCaption" class="mt-4 text-center text-slate-200 text-lg font-black font-amiri"></p>
+        </div>
+    </div>
+
+    <!-- MODAL 5: GITHUB PAGES DEPLOYMENT GUIDE -->
+    <div id="githubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
+                <h3 class="text-xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
+                    <i data-lucide="github" class="w-6 h-6 text-purple-400"></i>
+                    <span>ازاي ترفع الموقع مجاناً على GitHub Pages</span>
+                </h3>
+                <button onclick="toggleModal('githubModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-xs sm:text-sm text-slate-300 light:text-slate-700 font-semibold leading-relaxed">
+                <p>تقدر ترفع الموقع ده مجاناً 100% عشان كل أصحابك في بيت المحبة يدخلوا عليه من أي مكان!</p>
+                
+                <ol class="space-y-3 list-decimal list-inside font-bold">
+                    <li class="bg-slate-800/50 light:bg-slate-100 p-3 rounded-2xl border border-slate-700/60 light:border-slate-200">
+                        <strong class="text-amber-400">اعمل Repository جديد:</strong> ادخل على حسابك في GitHub واعمل <i>New Repository</i> وسميه مثلاً <code class="bg-slate-800 px-1.5 py-0.5 rounded text-pink-400">bayt-el-mahabba</code>.
+                    </li>
+                    <li class="bg-slate-800/50 light:bg-slate-100 p-3 rounded-2xl border border-slate-700/60 light:border-slate-200">
+                        <strong class="text-amber-400">ارفع الملف:</strong> احفظ الكود ده في ملف باسم <code class="bg-slate-800 px-1.5 py-0.5 rounded text-pink-400">index.html</code> وارفعه جوه الـ Repo.
+                    </li>
+                    <li class="bg-slate-800/50 light:bg-slate-100 p-3 rounded-2xl border border-slate-700/60 light:border-slate-200">
+                        <strong class="text-amber-400">فعل الخاصية:</strong> ادخل على <strong>Settings</strong> &rarr; <strong>Pages</strong>.
+                    </li>
+                    <li class="bg-slate-800/50 light:bg-slate-100 p-3 rounded-2xl border border-slate-700/60 light:border-slate-200">
+                        <strong class="text-amber-400">انشر الموقع:</strong> اختار Branch الـ <code class="bg-slate-800 px-1.5 py-0.5 rounded text-pink-400">main / root</code> ودوس Save!
+                    </li>
+                </ol>
+
+                <div class="p-3.5 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl text-emerald-300 light:text-emerald-700 text-xs flex items-center space-x-2 space-x-reverse font-bold">
+                    <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
+                    <span>الموقع هيبقى شغال على الرابط: <code>https://yourusername.github.io/bayt-el-mahabba/</code></span>
+                </div>
+            </div>
+
+            <div class="pt-2 flex justify-end">
+                <button onclick="toggleModal('githubModal')" class="px-5 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs shadow-lg">تمام فهمت!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC -->
+    <script>
+        // Default Config & Initial Sample Data (Egyptian Dialect)
+        const DEFAULT_SETTINGS = {
+            siteTitle: 'ذكريات بيت المحبة',
+            siteTagline: 'أيامنا الحلوة ولمة الصحاب 💖',
+            heroHeading: 'ذكريات مش ممكن تتنسى!',
+            heroSubtitle: 'من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!',
+            memoriesHeader: 'حكايات وذكريات بيت المحبة',
+            squadHeader: 'أبطال بيت المحبة',
+            bgPreset: 'bg-preset-stars',
+            customBgUrl: ''
+        };
+
+        const INITIAL_MEMORIES = [
+            {
+                id: '1',
+                title: 'سفرية دهب والملايات الزرقة',
+                date: '2024-07-15',
+                category: 'سفريات وخروجات',
+                location: 'دهب، جنوب سيناء',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+                story: 'قررنا فجأة الساعة 2 بالليل نلم شنطنا ونطلع على دهب. شفنا الشروق على البحر، وأكلنا إندومي محروق وكنا بنغني بعلو صوتنا!',
+                tagged: ['أحمد', 'سارة', 'مينا'],
+                reactions: { love: 18, laugh: 9, magic: 12, core: 15 }
+            },
+            {
+                id: '2',
+                title: 'سهرة قهوة الفيشاوي والضحك للفجر',
+                date: '2024-04-10',
+                category: 'سهر وضحك',
+                location: 'خان الخليلي، الحسين',
+                image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
+                story: 'قعدنا على القهوة وطلبنا شاي بالنعناع، وكالعادة أحمد بدأ يرمي إفيهات والناس كلها كانت بتضحك معانا في الشارع.',
+                tagged: ['أحمد', 'مريم', 'عمر', 'سارة'],
+                reactions: { love: 25, laugh: 30, magic: 8, core: 20 }
+            },
+            {
+                id: '3',
+                title: 'يوم التخرج وفرحة بيت المحبة',
+                date: '2024-05-20',
+                category: 'لمة العيلة والصحاب',
+                location: 'المسرح الكبير',
+                image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+                story: 'بعد 4 سنين طحن وسهر ومذاكرة وشاي بلبن، أخيراً رمينا الروب والكبوش وسجلنا أحلى يوم في حياتنا.',
+                tagged: ['أحمد', 'سارة', 'مينا', 'مريم', 'عمر'],
+                reactions: { love: 40, laugh: 5, magic: 35, core: 50 }
+            }
+        ];
+
+        const INITIAL_SQUAD = [
+            {
+                name: 'أحمد عبد الله',
+                role: 'مهندس الخروجات 🗺️',
+                quote: '"خمس دقائق وأكون عندكم!" (وبيكون لسه صاحي من النوم)',
+                jokes: ['بيجيب معاه 5 باور بانك في الشنطة', 'بيعرف أجدع أماكن أكل في مصر'],
+                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+                name: 'سارة مراد',
+                role: 'DJ الشلة 🎧',
+                quote: '"استنوا.. الأغنية دي لازم نسمعها مع بعض دلوقتي!"',
+                jokes: ['بتشغل أغاني تسعينات الساعة 3 الفجر', 'مبتخليش حد يقلب الأغنية'],
+                avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+                name: 'مينا سمير',
+                role: 'طباخ ووزير التحلية 🥐',
+                quote: '"مين قال إني شبعت؟ نطلب ديسيرت للأول!"',
+                jokes: ['بيصوّر كل طبق قبل ما حد يمد إيده', 'صاحب أسرع ضحكة في العمارة'],
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
+            },
+            {
+                name: 'مريم حسن',
+                role: 'مصورة اللحظات المفاجئة 📸',
+                quote: '"بصوا هنا وسوا نفسكم مش واخدين بالكم!"',
+                jokes: ['معاها 10,000 صورة لكل واحد فينا', 'بتفضحنا بالصور القديمة في أعياد الميلاد'],
+                avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80'
+            }
+        ];
+
+        // Global State
+        let siteSettings = {};
+        let memories = [];
+        let squad = [];
+        let currentFilter = 'الكل';
+        let searchQuery = '';
+
+        // App Initialization
+        window.onload = function() {
+            lucide.createIcons();
+
+            // Load Saved Settings or Default
+            const savedSettings = localStorage.getItem('bm_site_settings');
+            siteSettings = savedSettings ? JSON.parse(savedSettings) : DEFAULT_SETTINGS;
+            applySiteSettings();
+
+            // Load Saved Memories
+            const savedMemories = localStorage.getItem('bm_memories_vault');
+            memories = savedMemories ? JSON.parse(savedMemories) : INITIAL_MEMORIES;
+
+            // Load Saved Squad
+            const savedSquad = localStorage.getItem('bm_squad_vault');
+            squad = savedSquad ? JSON.parse(savedSquad) : INITIAL_SQUAD;
+
+            renderMemories();
+            renderSquad();
+            updateStats();
+        };
+
+        // Apply Site Settings to UI & Background
+        function applySiteSettings() {
+            document.getElementById('uiSiteTitle').innerText = siteSettings.siteTitle || DEFAULT_SETTINGS.siteTitle;
+            document.getElementById('htmlPageTitle').innerText = (siteSettings.siteTitle || DEFAULT_SETTINGS.siteTitle) + " | ذكرياتنا الحلوة";
+            document.getElementById('uiSiteTagline').innerText = siteSettings.siteTagline || DEFAULT_SETTINGS.siteTagline;
+            document.getElementById('uiHeroHeading').innerText = siteSettings.heroHeading || DEFAULT_SETTINGS.heroHeading;
+            document.getElementById('uiHeroSubtitle').innerText = siteSettings.heroSubtitle || DEFAULT_SETTINGS.heroSubtitle;
+            document.getElementById('uiMemoriesHeader').querySelector('span').innerText = siteSettings.memoriesHeader || DEFAULT_SETTINGS.memoriesHeader;
+            document.getElementById('uiSquadHeader').querySelector('span').innerText = siteSettings.squadHeader || DEFAULT_SETTINGS.squadHeader;
+
+            // Apply Background
+            const body = document.getElementById('mainBody');
+            body.className = body.className.replace(/bg-preset-\w+/g, '');
+            
+            if (siteSettings.customBgUrl && siteSettings.customBgUrl.trim() !== '') {
+                body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('${siteSettings.customBgUrl}')`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+            } else {
+                body.style.backgroundImage = '';
+                body.classList.add(siteSettings.bgPreset || 'bg-preset-stars');
+            }
+        }
+
+        function saveSettingsToLocalStorage() {
+            localStorage.setItem('bm_site_settings', JSON.stringify(siteSettings));
+            applySiteSettings();
+        }
+
+        function saveMemoriesToLocalStorage() {
+            localStorage.setItem('bm_memories_vault', JSON.stringify(memories));
+            updateStats();
+        }
+
+        function saveSquadToLocalStorage() {
+            localStorage.setItem('bm_squad_vault', JSON.stringify(squad));
+            updateStats();
+        }
+
+        // Render Memories Cards
+        function renderMemories() {
+            const grid = document.getElementById('memoryGrid');
+            grid.innerHTML = '';
+
+            const filtered = memories.filter(m => {
+                const matchesCategory = currentFilter === 'الكل' || m.category === currentFilter;
+                const matchesSearch = searchQuery === '' || 
+                    m.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    m.story.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    m.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    m.tagged.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 glass-panel rounded-3xl">
+                        <i data-lucide="ghost" class="w-12 h-12 text-amber-400 mx-auto mb-3"></i>
+                        <p class="text-slate-300 font-bold text-sm">مفيش ذكريات للأسف بالاسم أو الفلتر ده!</p>
+                        <button onclick="openAddMemoryModal()" class="mt-3 text-xs text-amber-400 hover:underline font-extrabold">ضيف أول ذكرى هنا</button>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            filtered.forEach(m => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-3xl overflow-hidden hover:border-amber-500/40 transition duration-300 flex flex-col group border border-slate-800/80 light:border-slate-200 relative";
+
+                const defaultImg = 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80';
+                const imgSrc = m.image && m.image.trim() !== '' ? m.image : defaultImg;
+
+                card.innerHTML = `
+                    <!-- Action Buttons Overlay (Edit / Delete) -->
+                    <div class="absolute top-3 left-3 z-20 flex items-center space-x-1 space-x-reverse opacity-90">
+                        <button onclick="openEditMemoryModal('${m.id}')" class="p-1.5 rounded-lg bg-slate-900/80 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition" title="تعديل الذكرى">
+                            <i data-lucide="edit-3" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="deleteMemory('${m.id}')" class="p-1.5 rounded-lg bg-slate-900/80 text-rose-400 hover:bg-rose-500 hover:text-white transition" title="مسح الذكرى">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <!-- Image Header -->
+                    <div class="relative h-52 overflow-hidden bg-slate-900 cursor-pointer" onclick="openZoomImage('${imgSrc}', '${escapeHtml(m.title)}')">
+                        <img src="${imgSrc}" alt="${escapeHtml(m.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='${defaultImg}'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-70"></div>
+                        
+                        <!-- Category Badge -->
+                        <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-black tracking-wider bg-slate-900/80 backdrop-blur-md text-amber-300 border border-slate-700">
+                            ${m.category}
+                        </span>
+
+                        <!-- Date -->
+                        <span class="absolute bottom-3 right-3 text-xs font-bold text-slate-200 flex items-center space-x-1 space-x-reverse">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5 text-amber-400"></i>
+                            <span>${m.date}</span>
+                        </span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center space-x-1.5 space-x-reverse text-xs text-amber-400 font-bold mb-1">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                                <span>${escapeHtml(m.location)}</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-100 light:text-slate-900 group-hover:text-amber-400 transition">${escapeHtml(m.title)}</h3>
+                            <p class="mt-2 text-xs text-slate-300 light:text-slate-700 leading-relaxed font-semibold">${escapeHtml(m.story)}</p>
+                        </div>
+
+                        <!-- Tagged Friends -->
+                        <div class="pt-2 border-t border-slate-800/60 light:border-slate-200">
+                            <p class="text-[10px] text-slate-400 font-extrabold mb-1.5">مين حضر اليوم ده؟</p>
+                            <div class="flex flex-wrap gap-1.5">
+                                ${m.tagged.map(name => `
+                                    <span class="px-2 py-0.5 rounded-md bg-slate-800/80 light:bg-slate-200 text-slate-200 light:text-slate-800 text-[10px] font-bold flex items-center space-x-1 space-x-reverse">
+                                        <i data-lucide="user" class="w-2.5 h-2.5 text-rose-400"></i>
+                                        <span>${escapeHtml(name.trim())}</span>
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Reactions Counter -->
+                        <div class="pt-3 flex items-center justify-between bg-slate-900/50 light:bg-slate-100/60 p-2.5 rounded-2xl border border-slate-800/50 light:border-slate-200 text-xs">
+                            <button onclick="reactMemory('${m.id}', 'love')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-rose-400">
+                                <span>❤️</span>
+                                <span class="font-extrabold">${m.reactions?.love || 0}</span>
+                            </button>
+                            <button onclick="reactMemory('${m.id}', 'laugh')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-amber-400">
+                                <span>😂</span>
+                                <span class="font-extrabold">${m.reactions?.laugh || 0}</span>
+                            </button>
+                            <button onclick="reactMemory('${m.id}', 'magic')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-purple-400">
+                                <span>🌟</span>
+                                <span class="font-extrabold">${m.reactions?.magic || 0}</span>
+                            </button>
+                            <button onclick="reactMemory('${m.id}', 'core')" class="flex items-center space-x-1 space-x-reverse hover:scale-110 transition text-slate-300 hover:text-cyan-400">
+                                <span>📸</span>
+                                <span class="font-extrabold">${m.reactions?.core || 0}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Render Squad Member Cards
+        function renderSquad() {
+            const grid = document.getElementById('squadGrid');
+            grid.innerHTML = '';
+
+            squad.forEach((s, idx) => {
+                const card = document.createElement('div');
+                card.className = "glass-panel rounded-3xl p-6 flex flex-col items-center text-center space-y-4 hover:border-purple-500/50 transition duration-300 group relative";
+                
+                card.innerHTML = `
+                    <!-- Squad Action Buttons -->
+                    <div class="absolute top-3 left-3 z-20 flex items-center space-x-1 space-x-reverse">
+                        <button onclick="openEditSquadModal(${idx})" class="p-1 rounded-lg bg-slate-900/80 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition" title="تعديل الشخصية">
+                            <i data-lucide="edit-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="deleteSquadMember(${idx})" class="p-1 rounded-lg bg-slate-900/80 text-rose-400 hover:bg-rose-500 hover:text-white transition" title="مسح الصديق">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <img src="${s.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80'}" alt="${s.name}" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-purple-500/40 group-hover:ring-amber-400 transition duration-300">
+                        <span class="absolute -bottom-2 -left-2 bg-slate-900 light:bg-white p-1 rounded-lg text-xs shadow-md">✨</span>
+                    </div>
+
+                    <div>
+                        <h3 class="text-base font-black text-slate-100 light:text-slate-900">${escapeHtml(s.name)}</h3>
+                        <p class="text-xs text-amber-400 font-extrabold mt-0.5">${escapeHtml(s.role)}</p>
+                    </div>
+
+                    <p class="text-xs italic text-slate-300 light:text-slate-700 font-amiri font-bold text-base leading-snug">
+                        ${escapeHtml(s.quote)}
+                    </p>
+
+                    <div class="w-full pt-3 border-t border-slate-800 light:border-slate-200 text-right">
+                        <p class="text-[10px] text-slate-400 font-black uppercase mb-1">قفشات ومواقف عنه</p>
+                        <ul class="space-y-1">
+                            ${s.jokes.map(j => `
+                                <li class="text-[11px] text-slate-300 light:text-slate-700 font-bold flex items-start space-x-1.5 space-x-reverse">
+                                    <span class="text-amber-400">•</span>
+                                    <span>${escapeHtml(j)}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Memory Submit (Add or Edit)
+        function handleMemorySubmit(e) {
+            e.preventDefault();
+
+            const memoryId = document.getElementById('formMemoryId').value;
+            const title = document.getElementById('formTitle').value;
+            const date = document.getElementById('formDate').value;
+            const category = document.getElementById('formCategory').value;
+            const location = document.getElementById('formLocation').value;
+            const image = document.getElementById('formImage').value;
+            const taggedInput = document.getElementById('formTagged').value;
+            const story = document.getElementById('formStory').value;
+
+            const tagged = taggedInput ? taggedInput.split(',') : ['شلة بيت المحبة'];
+
+            if (memoryId) {
+                // Edit existing
+                const index = memories.findIndex(m => m.id === memoryId);
+                if (index !== -1) {
+                    memories[index] = {
+                        ...memories[index],
+                        title, date, category, location, image, story, tagged
+                    };
+                }
+            } else {
+                // Add new
+                const newMem = {
+                    id: Date.now().toString(),
+                    title, date, category, location, image, story, tagged,
+                    reactions: { love: 1, laugh: 1, magic: 1, core: 1 }
+                };
+                memories.unshift(newMem);
+            }
+
+            saveMemoriesToLocalStorage();
+            renderMemories();
+            toggleModal('memoryModal');
+        }
+
+        function openAddMemoryModal() {
+            document.getElementById('memoryForm').reset();
+            document.getElementById('formMemoryId').value = '';
+            document.getElementById('memoryModalTitle').querySelector('span').innerText = 'تسجيل ذكرى جديدة';
+            toggleModal('memoryModal');
+        }
+
+        function openEditMemoryModal(id) {
+            const mem = memories.find(m => m.id === id);
+            if (!mem) return;
+
+            document.getElementById('formMemoryId').value = mem.id;
+            document.getElementById('formTitle').value = mem.title;
+            document.getElementById('formDate').value = mem.date;
+            document.getElementById('formCategory').value = mem.category;
+            document.getElementById('formLocation').value = mem.location;
+            document.getElementById('formImage').value = mem.image || '';
+            document.getElementById('formTagged').value = mem.tagged.join(', ');
+            document.getElementById('formStory').value = mem.story;
+
+            document.getElementById('memoryModalTitle').querySelector('span').innerText = 'تعديل بيانات الذكرى';
+            toggleModal('memoryModal');
+        }
+
+        function deleteMemory(id) {
+            if (confirm('تأكيد مسح الذكرى دي من الأرشيف؟')) {
+                memories = memories.filter(m => m.id !== id);
+                saveMemoriesToLocalStorage();
+                renderMemories();
+            }
+        }
+
+        // Squad Submit (Add or Edit)
+        function handleSquadSubmit(e) {
+            e.preventDefault();
+
+            const idx = document.getElementById('formSquadIndex').value;
+            const name = document.getElementById('squadName').value;
+            const role = document.getElementById('squadRole').value;
+            const avatar = document.getElementById('squadAvatar').value;
+            const quote = document.getElementById('squadQuote').value;
+            const jokesText = document.getElementById('squadJokes').value;
+
+            const jokes = jokesText ? jokesText.split('\n').filter(j => j.trim() !== '') : ['صاحب جدع ومعانا في أي مكان'];
+
+            const squadMember = { name, role, avatar, quote, jokes };
+
+            if (idx !== '') {
+                squad[parseInt(idx)] = squadMember;
+            } else {
+                squad.push(squadMember);
+            }
+
+            saveSquadToLocalStorage();
+            renderSquad();
+            toggleModal('squadModal');
+        }
+
+        function openAddSquadModal() {
+            document.getElementById('squadForm').reset();
+            document.getElementById('formSquadIndex').value = '';
+            document.getElementById('squadModalTitle').querySelector('span').innerText = 'إضافة صاحب جديد';
+            toggleModal('squadModal');
+        }
+
+        function openEditSquadModal(idx) {
+            const s = squad[idx];
+            if (!s) return;
+
+            document.getElementById('formSquadIndex').value = idx;
+            document.getElementById('squadName').value = s.name;
+            document.getElementById('squadRole').value = s.role;
+            document.getElementById('squadAvatar').value = s.avatar || '';
+            document.getElementById('squadQuote').value = s.quote;
+            document.getElementById('squadJokes').value = s.jokes.join('\n');
+
+            document.getElementById('squadModalTitle').querySelector('span').innerText = 'تعديل بيانات الصديق';
+            toggleModal('squadModal');
+        }
+
+        function deleteSquadMember(idx) {
+            if (confirm('تأكيد مسح الصديق ده من القائمة؟')) {
+                squad.splice(idx, 1);
+                saveSquadToLocalStorage();
+                renderSquad();
+            }
+        }
+
+        // Settings Form Handler
+        function handleSettingsSubmit(e) {
+            e.preventDefault();
+
+            siteSettings.siteTitle = document.getElementById('settingSiteTitle').value;
+            siteSettings.siteTagline = document.getElementById('settingSiteTagline').value;
+            siteSettings.heroHeading = document.getElementById('settingHeroHeading').value;
+            siteSettings.heroSubtitle = document.getElementById('settingHeroSubtitle').value;
+            siteSettings.memoriesHeader = document.getElementById('settingMemoriesHeader').value;
+            siteSettings.squadHeader = document.getElementById('settingSquadHeader').value;
+            siteSettings.customBgUrl = document.getElementById('settingCustomBg').value;
+
+            saveSettingsToLocalStorage();
+            toggleModal('editSiteSettingsModal');
+        }
+
+        // Direct Title Quick Edit
+        function openDirectTitleEdit(targetField) {
+            toggleModal('editSiteSettingsModal');
+            setTimeout(() => {
+                let focusElemId = 'settingSiteTitle';
+                if (targetField === 'heroHeading') focusElemId = 'settingHeroHeading';
+                if (targetField === 'heroSubtitle') focusElemId = 'settingHeroSubtitle';
+                if (targetField === 'memoriesHeader') focusElemId = 'settingMemoriesHeader';
+                if (targetField === 'squadHeader') focusElemId = 'settingSquadHeader';
+                
+                const elem = document.getElementById(focusElemId);
+                if (elem) {
+                    elem.focus();
+                    elem.select();
+                }
+            }, 150);
+        }
+
+        // Generic Modal Toggle
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            if (modal.classList.contains('hidden')) {
+                // Populate settings modal inputs before opening
+                if (modalId === 'editSiteSettingsModal') {
+                    document.getElementById('settingSiteTitle').value = siteSettings.siteTitle || DEFAULT_SETTINGS.siteTitle;
+                    document.getElementById('settingSiteTagline').value = siteSettings.siteTagline || DEFAULT_SETTINGS.siteTagline;
+                    document.getElementById('settingHeroHeading').value = siteSettings.heroHeading || DEFAULT_SETTINGS.heroHeading;
+                    document.getElementById('settingHeroSubtitle').value = siteSettings.heroSubtitle || DEFAULT_SETTINGS.heroSubtitle;
+                    document.getElementById('settingMemoriesHeader').value = siteSettings.memoriesHeader || DEFAULT_SETTINGS.memoriesHeader;
+                    document.getElementById('settingSquadHeader').value = siteSettings.squadHeader || DEFAULT_SETTINGS.squadHeader;
+                    document.getElementById('settingCustomBg').value = siteSettings.customBgUrl || '';
+                }
+
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
+
+        function setBgPreset(preset) {
+            siteSettings.bgPreset = preset;
+            siteSettings.customBgUrl = '';
+            document.getElementById('settingCustomBg').value = '';
+            saveSettingsToLocalStorage();
+        }
+
+        // React Memory
+        function reactMemory(id, type) {
+            const memory = memories.find(m => m.id === id);
+            if (memory) {
+                if (!memory.reactions) memory.reactions = { love: 0, laugh: 0, magic: 0, core: 0 };
+                memory.reactions[type] = (memory.reactions[type] || 0) + 1;
+                saveMemoriesToLocalStorage();
+                renderMemories();
+            }
+        }
+
+        // Filters & Search
+        function filterCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.innerText.includes(cat) || (cat === 'الكل' && btn.innerText === 'الكل')) {
+                    btn.className = "category-btn active px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+                } else {
+                    btn.className = "category-btn px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition glass-panel text-slate-300 light:text-slate-700 hover:bg-slate-800";
+                }
+            });
+            renderMemories();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('searchInput').value.trim();
+            renderMemories();
+        }
+
+        // Update Counter Stats
+        function updateStats() {
+            document.getElementById('statTotalMemories').innerText = memories.length;
+            document.getElementById('statFriendsCount').innerText = squad.length;
+            const trips = memories.filter(m => m.category === 'سفريات وخروجات').length;
+            document.getElementById('statTripsCount').innerText = trips;
+        }
+
+        function openZoomImage(src, caption) {
+            document.getElementById('zoomImage').src = src;
+            document.getElementById('zoomCaption').innerText = caption;
+            toggleModal('imageModal');
+        }
+
+        // Audio Player Handler
+        function toggleAudio() {
+            const audio = document.getElementById('bgAudio');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                audio.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        }
+
+        // Theme Switcher
+        function setTheme(theme) {
+            const body = document.getElementById('mainBody');
+            body.classList.remove('dark', 'light', 'nostalgic-theme');
+
+            if (theme === 'dark') {
+                body.classList.add('dark');
+            } else if (theme === 'light') {
+                body.classList.add('light');
+            } else if (theme === 'nostalgic') {
+                body.classList.add('nostalgic-theme');
+            }
+        }
+
+        // Helper Escape HTML
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;")
+                      .replace(/</g, "&lt;")
+                      .replace(/>/g, "&gt;")
+                      .replace(/"/g, "&quot;")
+                      .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
