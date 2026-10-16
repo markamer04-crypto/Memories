@@ -260,7 +260,7 @@
                 <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
                     <h2 class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="crown" class="w-7 h-7 text-amber-400"></i>
-                        <span id="uiSquadHeader">أبطال بيت المحبة</span>
+                        <span id="uiSquadHeader">أابطال بيت المحبة</span>
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">الناس الجدعان اللي من غيرهم القعدة مالهاش طعم</p>
                 </div>
@@ -471,7 +471,7 @@
         </div>
     </div>
 
-    <!-- FIREBASE & CORE APPLICATION SCRIPT WITH INSTANT LOCAL CACHING -->
+    <!-- FIREBASE & CORE APPLICATION SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
@@ -490,21 +490,10 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // INSTANT LOAD FROM LOCALSTORAGE TO AVOID DELAY
-        let localMemories = JSON.parse(localStorage.getItem('cached_memories')) || [];
-        let localSquad = JSON.parse(localStorage.getItem('cached_squad')) || [];
+        let localMemories = [];
+        let localSquad = [];
         let activeCategory = 'الكل';
         let searchQuery = '';
-
-        // Render cached data immediately on startup with 0ms delay
-        renderMemories();
-        renderSquad();
-        updateStats();
-
-        const cachedSettings = localStorage.getItem('cached_settings');
-        if (cachedSettings) {
-            applySettings(JSON.parse(cachedSettings));
-        }
 
         signInAnonymously(auth)
             .then(() => {
@@ -515,33 +504,38 @@
                 document.getElementById('syncStatusText').innerText = "وضع أوفلاين مؤقت ⚠️";
             });
 
-        function applySettings(data) {
-            if (data.siteTitle) {
-                document.getElementById('uiSiteTitle').innerText = data.siteTitle;
-                document.getElementById('htmlPageTitle').innerText = data.siteTitle;
-            }
-            if (data.siteTagline) document.getElementById('uiSiteTagline').innerText = data.siteTagline;
-            if (data.heroHeading) document.getElementById('uiHeroHeading').innerText = data.heroHeading;
-            if (data.heroSubtitle) document.getElementById('uiHeroSubtitle').innerText = data.heroSubtitle;
-            if (data.memoriesHeader) document.getElementById('uiMemoriesHeader').innerText = data.memoriesHeader;
-            if (data.squadHeader) document.getElementById('uiSquadHeader').innerText = data.squadHeader;
-            
-            const body = document.getElementById('mainBody');
-            if (data.customBgImage) {
-                body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.88)), url('${data.customBgImage}')`;
-                document.getElementById('settingsCustomBgImage').value = data.customBgImage;
-            } else if (data.bgPreset) {
-                body.style.backgroundImage = '';
-                body.className = body.className.replace(/bg-preset-\w+/g, '') + ' ' + data.bgPreset;
-            }
-        }
-
         // Real-time listener for Settings
         onSnapshot(doc(db, "settings", "siteConfig"), (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.data();
-                localStorage.setItem('cached_settings', JSON.stringify(data));
-                applySettings(data);
+                if (data.siteTitle) {
+                    document.getElementById('uiSiteTitle').innerText = data.siteTitle;
+                    document.getElementById('htmlPageTitle').innerText = data.siteTitle;
+                }
+                if (data.siteTagline) {
+                    document.getElementById('uiSiteTagline').innerText = data.siteTagline;
+                }
+                if (data.heroHeading) {
+                    document.getElementById('uiHeroHeading').innerText = data.heroHeading;
+                }
+                if (data.heroSubtitle) {
+                    document.getElementById('uiHeroSubtitle').innerText = data.heroSubtitle;
+                }
+                if (data.memoriesHeader) {
+                    document.getElementById('uiMemoriesHeader').innerText = data.memoriesHeader;
+                }
+                if (data.squadHeader) {
+                    document.getElementById('uiSquadHeader').innerText = data.squadHeader;
+                }
+                
+                const body = document.getElementById('mainBody');
+                if (data.customBgImage) {
+                    body.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.88)), url('${data.customBgImage}')`;
+                    document.getElementById('settingsCustomBgImage').value = data.customBgImage;
+                } else if (data.bgPreset) {
+                    body.style.backgroundImage = '';
+                    body.className = body.className.replace(/bg-preset-\w+/g, '') + ' ' + data.bgPreset;
+                }
             }
         });
 
@@ -551,7 +545,6 @@
             snapshot.forEach((doc) => {
                 localMemories.push({ id: doc.id, ...doc.data() });
             });
-            localStorage.setItem('cached_memories', JSON.stringify(localMemories));
             renderMemories();
             updateStats();
         });
@@ -562,14 +555,12 @@
             snapshot.forEach((doc) => {
                 localSquad.push({ id: doc.id, ...doc.data() });
             });
-            localStorage.setItem('cached_squad', JSON.stringify(localSquad));
             renderSquad();
             updateStats();
         });
 
         window.renderMemories = function() {
             const grid = document.getElementById('memoryGrid');
-            if (!grid) return;
             grid.innerHTML = '';
 
             const filtered = localMemories.filter(m => {
@@ -635,7 +626,6 @@
 
         window.renderSquad = function() {
             const grid = document.getElementById('squadGrid');
-            if (!grid) return;
             grid.innerHTML = '';
 
             if (localSquad.length === 0) {
