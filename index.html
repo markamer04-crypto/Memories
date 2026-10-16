@@ -66,7 +66,6 @@
             font-family: 'Amiri', serif;
         }
 
-        /* Glassmorphism Panels */
         .glass-panel {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(16px);
@@ -92,7 +91,6 @@
             box-shadow: 0 10px 30px -10px rgba(120, 80, 40, 0.12);
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -107,7 +105,6 @@
             background: rgba(156, 163, 175, 0.7);
         }
 
-        /* Background Presets */
         .bg-preset-stars {
             background-image: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15), rgba(15, 23, 42, 0.98)), radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.15), rgba(15, 23, 42, 1));
         }
@@ -121,18 +118,17 @@
 </head>
 <body id="mainBody" class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden transition-all duration-500 bg-preset-stars">
 
-    <!-- Dynamic Glowing Ambient Blobs -->
+    <!-- Ambient Blobs -->
     <div id="ambientBlobs">
         <div class="fixed top-0 right-1/4 w-96 h-96 bg-purple-600/25 rounded-full animate-pulse-glow pointer-events-none -z-10"></div>
         <div class="fixed top-1/3 left-10 w-96 h-96 bg-amber-500/20 rounded-full animate-pulse-glow pointer-events-none -z-10" style="animation-delay: 1.5s;"></div>
         <div class="fixed bottom-10 right-10 w-80 h-80 bg-emerald-500/20 rounded-full animate-pulse-glow pointer-events-none -z-10" style="animation-delay: 3s;"></div>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Header -->
     <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/70 dark:bg-slate-950/70 light:bg-white/80 border-b border-slate-800/80 light:border-slate-200 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Site Brand / Title -->
             <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل اسم الموقع">
                 <div class="p-2.5 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-lg shadow-amber-500/20 group-hover:scale-105 transition">
                     <i data-lucide="heart-handshake" class="w-6 h-6"></i>
@@ -147,28 +143,22 @@
                 </div>
             </div>
 
-            <!-- Action Controls -->
             <div class="flex items-center space-x-2 sm:space-x-3 space-x-reverse">
-                
-                <!-- Connection Status Indicator -->
                 <div id="syncStatus" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold flex items-center space-x-1.5 space-x-reverse">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span id="syncStatusText">متصل ومربوط مباشرة ☁️</span>
                 </div>
 
-                <!-- Quick Customize Titles & Background -->
-                <button onclick="toggleModal('editSiteSettingsModal')" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/60 light:hover:bg-slate-200 transition text-amber-400 flex items-center space-x-1 space-x-reverse" title="تعديل عناوين وخلفية الموقع">
+                <button onclick="openDirectTitleEdit()" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/60 light:hover:bg-slate-200 transition text-amber-400 flex items-center space-x-1 space-x-reverse" title="تعديل عناوين وخلفية الموقع">
                     <i data-lucide="image" class="w-5 h-5"></i>
                     <span class="hidden md:inline text-xs font-bold mr-1">تغيير الخلفية والتنسيق</span>
                 </button>
 
-                <!-- Theme Switcher -->
                 <div class="relative group">
                     <button id="themeToggleBtn" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/50 light:hover:bg-slate-200 transition text-slate-300 light:text-slate-700 flex items-center space-x-1" title="تغيير المظهر">
                         <i data-lucide="sun" class="w-5 h-5 hidden light:block"></i>
                         <i data-lucide="moon" class="w-5 h-5 block dark:block light:hidden"></i>
                     </button>
-                    <!-- Dropdown -->
                     <div class="absolute left-0 mt-2 w-40 py-2 bg-slate-900 light:bg-white border border-slate-800 light:border-slate-200 rounded-2xl shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200 z-50">
                         <button onclick="setTheme('dark')" class="w-full text-right px-4 py-2 text-xs flex items-center space-x-2 space-x-reverse text-slate-300 hover:bg-slate-800 light:text-slate-700 light:hover:bg-slate-100 font-semibold">
                             <i data-lucide="moon" class="w-4 h-4"></i>
@@ -185,22 +175,19 @@
                     </div>
                 </div>
 
-                <!-- Add Memory Button -->
                 <button onclick="openAddMemoryModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-amber-500/20 transition transform hover:-translate-y-0.5 flex items-center space-x-1.5 space-x-reverse">
                     <i data-lucide="plus-circle" class="w-4.5 h-4.5"></i>
                     <span>ضيف ذكرى جديدة</span>
                 </button>
-
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Section -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
 
-        <!-- HERO SECTION -->
+        <!-- Hero Section -->
         <section class="relative pt-6 pb-8 text-center flex flex-col items-center justify-center">
-            
             <div class="inline-flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full glass-panel border border-amber-500/30 text-amber-300 light:text-amber-700 text-xs sm:text-sm font-bold mb-6 animate-float">
                 <span class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
@@ -209,17 +196,14 @@
                 <span>الأرشيف الرسمي لأجدع صحاب وشلة بيت المحبة</span>
             </div>
 
-            <!-- Main Editable Hero Heading -->
             <h1 id="uiHeroHeading" onclick="openDirectTitleEdit()" class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-slate-300 light:from-slate-900 light:via-amber-900 light:to-slate-800 max-w-4xl leading-tight cursor-pointer hover:opacity-80 transition" title="انقر لتعديل العنوان">
                 ذكريات مش ممكن تتنسى!
             </h1>
 
-            <!-- Editable Hero Subtitle -->
             <p id="uiHeroSubtitle" onclick="openDirectTitleEdit()" class="mt-4 text-base sm:text-xl text-slate-300 light:text-slate-700 max-w-2xl font-semibold leading-relaxed cursor-pointer hover:text-amber-300 transition" title="انقر لتعديل الوصف">
-                من قعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!
+                من أعدات القهوة للفجر، والسفريات الضحك اللي فيها مابينتهيش.. هنا الصندوق الأسود لكل لحظة حلوة جمعتنا!
             </p>
 
-            <!-- Counter Stats Bar -->
             <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl">
                 <div class="glass-panel p-5 rounded-3xl text-center border border-amber-500/20 hover:scale-105 transition duration-300">
                     <div id="statTotalMemories" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-rose-400">0</div>
@@ -227,7 +211,7 @@
                 </div>
                 <div class="glass-panel p-5 rounded-3xl text-center border border-purple-500/20 hover:scale-105 transition duration-300">
                     <div id="statFriendsCount" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">0</div>
-                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">الشباب الكرنج</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">أبطال الشلة</div>
                 </div>
                 <div class="glass-panel p-5 rounded-3xl text-center border border-rose-500/20 hover:scale-105 transition duration-300">
                     <div id="statTripsCount" class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-red-400">0</div>
@@ -238,22 +222,19 @@
                     <div class="text-xs uppercase tracking-wider text-slate-400 light:text-slate-600 mt-1 font-bold">ضحك وقفشات</div>
                 </div>
             </div>
-
         </section>
 
-        <!-- MEMORY TIMELINE / FEED SECTION -->
+        <!-- Memory Timeline Feed -->
         <section class="space-y-8">
-            
             <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800/80 light:border-slate-200 pb-6">
                 <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
-                    <h2 id="uiMemoriesHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="sparkles" class="w-7 h-7 text-amber-400"></i>
-                        <span>حكايات وذكريات بيت المحبة</span>
+                        <span id="uiMemoriesHeader">حكايات وذكريات بيت المحبة</span>
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">تصفح الذكريات، دور بالاسم، أو فلتر حسب نوع الخروجة</p>
                 </div>
 
-                <!-- Search Input & Filters -->
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                     <div class="relative">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2"></i>
@@ -270,19 +251,16 @@
                 </div>
             </div>
 
-            <!-- Memories Grid -->
-            <div id="memoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Memory Cards Rendered Dynamically -->
-            </div>
+            <div id="memoryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
-        <!-- SQUAD SPOTLIGHT SECTION -->
+        <!-- Squad Section -->
         <section class="space-y-8 pt-8">
             <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-800/80 light:border-slate-200 pb-6 gap-4">
                 <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
-                    <h2 id="uiSquadHeader" class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="crown" class="w-7 h-7 text-amber-400"></i>
-                        <span>أبطال بيت المحبة</span>
+                        <span id="uiSquadHeader">أابطال بيت المحبة</span>
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">الناس الجدعان اللي من غيرهم القعدة مالهاش طعم</p>
                 </div>
@@ -293,14 +271,12 @@
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="squadGrid">
-                <!-- Squad Cards Rendered Dynamically -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="squadGrid"></div>
         </section>
 
     </main>
 
-    <!-- FLOATING MUSIC WIDGET -->
+    <!-- Floating Audio Widget -->
     <div class="fixed bottom-6 left-6 z-40">
         <div id="musicPlayer" class="glass-panel p-3 rounded-2xl shadow-2xl border border-slate-700/60 light:border-slate-300 flex items-center space-x-3 space-x-reverse transition-all duration-300 max-w-xs">
             <button id="playAudioBtn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-slate-950 flex items-center justify-center shadow-lg hover:scale-105 transition flex-shrink-0">
@@ -320,11 +296,10 @@
     <!-- MODAL 1: ADD / EDIT MEMORY -->
     <div id="memoryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            
             <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
                 <h3 id="memoryModalTitle" class="text-lg sm:text-xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
                     <i data-lucide="plus-circle" class="w-6 h-6 text-amber-400"></i>
-                    <span>تسجيل ذكرى جديدة</span>
+                    <span id="memoryModalTitleText">تسجيل ذكرى جديدة</span>
                 </h3>
                 <button onclick="toggleModal('memoryModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
                     <i data-lucide="x" class="w-6 h-6"></i>
@@ -361,7 +336,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">صورة الذكرى (ارفع صورة من جهازك)</label>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">صورة الذكرى</label>
                     <input type="file" id="formFileInput" accept="image/*" onchange="handleFileUpload(event, 'formImage')" class="w-full px-3 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
                     <input type="hidden" id="formImage">
                 </div>
@@ -388,9 +363,9 @@
     <div id="squadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
-                <h3 id="squadModalTitle" class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
+                <h3 class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
                     <i data-lucide="user-plus" class="w-5 h-5 text-purple-400"></i>
-                    <span>إضافة صاحب جديد</span>
+                    <span id="squadModalTitleText">إضافة صاحب جديد</span>
                 </h3>
                 <button onclick="toggleModal('squadModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
                     <i data-lucide="x" class="w-6 h-6"></i>
@@ -411,7 +386,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الصورة الشخصية (ارفع صورة)</label>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الصورة الشخصية</label>
                     <input type="file" id="squadFileInput" accept="image/*" onchange="handleFileUpload(event, 'squadAvatar')" class="w-full px-3 py-2 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 light:border-slate-300 text-slate-100 light:text-slate-900 text-xs font-semibold file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
                     <input type="hidden" id="squadAvatar">
                 </div>
@@ -434,13 +409,13 @@
         </div>
     </div>
 
-    <!-- MODAL 3: EDIT SITE SETTINGS & BACKGROUND -->
+    <!-- MODAL 3: EDIT SITE SETTINGS & ALL TITLES -->
     <div id="editSiteSettingsModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <div class="flex items-center justify-between border-b border-slate-800 light:border-slate-200 pb-4">
                 <h3 class="text-lg font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse">
                     <i data-lucide="settings" class="w-5 h-5 text-amber-400"></i>
-                    <span>تخصيص عناوين وخلفية الموقع</span>
+                    <span>تخصيص جميع عناوين وخلفية الموقع</span>
                 </h3>
                 <button onclick="toggleModal('editSiteSettingsModal')" class="text-slate-400 hover:text-slate-200 light:text-slate-500">
                     <i data-lucide="x" class="w-6 h-6"></i>
@@ -449,11 +424,11 @@
 
             <form onsubmit="handleSiteSettingsSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">اسم الموقع</label>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">اسم الموقع الرئيسي</label>
                     <input type="text" id="settingsSiteTitle" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الشعار / السلوجان</label>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الشعار / السلوجان الفرعي</label>
                     <input type="text" id="settingsSiteTagline" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
                 </div>
                 <div>
@@ -464,13 +439,19 @@
                     <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">الوصف الفرعي (Hero Subtitle)</label>
                     <textarea id="settingsHeroSubtitle" rows="2" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
                 </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم الذكريات والقصص</label>
+                    <input type="text" id="settingsMemoriesHeader" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 light:text-slate-700 mb-1">عنوان قسم الأبطال والشلة</label>
+                    <input type="text" id="settingsSquadHeader" class="w-full px-4 py-2.5 rounded-xl bg-slate-800/60 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500">
+                </div>
                 
-                <!-- Direct Background Image Upload Option -->
                 <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 space-y-2">
                     <label class="block text-xs font-bold text-amber-400 mb-1">🖼️ رفع صورة خلفية خاصة من جهازك</label>
                     <input type="file" id="bgFileInput" accept="image/*" onchange="handleFileUpload(event, 'settingsCustomBgImage')" class="w-full px-3 py-2 rounded-xl bg-slate-800/80 light:bg-slate-100 border border-slate-700 text-slate-100 text-xs font-semibold file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600 cursor-pointer">
                     <input type="hidden" id="settingsCustomBgImage">
-                    <p class="text-[10px] text-slate-400 font-semibold">ارفع صورك المفضلة كخلفية للموقع، وسوف تتزامن لجميع الزوار تلقائياً!</p>
                 </div>
 
                 <div>
@@ -490,7 +471,7 @@
         </div>
     </div>
 
-    <!-- FIREBASE INITIALIZATION & CORE APPLICATION SCRIPT -->
+    <!-- FIREBASE & CORE APPLICATION SCRIPT -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
@@ -530,19 +511,21 @@
                 if (data.siteTitle) {
                     document.getElementById('uiSiteTitle').innerText = data.siteTitle;
                     document.getElementById('htmlPageTitle').innerText = data.siteTitle;
-                    document.getElementById('settingsSiteTitle').value = data.siteTitle;
                 }
                 if (data.siteTagline) {
                     document.getElementById('uiSiteTagline').innerText = data.siteTagline;
-                    document.getElementById('settingsSiteTagline').value = data.siteTagline;
                 }
                 if (data.heroHeading) {
                     document.getElementById('uiHeroHeading').innerText = data.heroHeading;
-                    document.getElementById('settingsHeroHeading').value = data.heroHeading;
                 }
                 if (data.heroSubtitle) {
                     document.getElementById('uiHeroSubtitle').innerText = data.heroSubtitle;
-                    document.getElementById('settingsHeroSubtitle').value = data.heroSubtitle;
+                }
+                if (data.memoriesHeader) {
+                    document.getElementById('uiMemoriesHeader').innerText = data.memoriesHeader;
+                }
+                if (data.squadHeader) {
+                    document.getElementById('uiSquadHeader').innerText = data.squadHeader;
                 }
                 
                 const body = document.getElementById('mainBody');
@@ -552,7 +535,6 @@
                 } else if (data.bgPreset) {
                     body.style.backgroundImage = '';
                     body.className = body.className.replace(/bg-preset-\w+/g, '') + ' ' + data.bgPreset;
-                    document.getElementById('settingsBgPreset').value = data.bgPreset;
                 }
             }
         });
@@ -577,7 +559,6 @@
             updateStats();
         });
 
-        // UI Render Functions
         window.renderMemories = function() {
             const grid = document.getElementById('memoryGrid');
             grid.innerHTML = '';
@@ -628,9 +609,14 @@
                             <i data-lucide="heart" class="w-4 h-4 fill-rose-500/20"></i>
                             <span>${m.likes || 0}</span>
                         </button>
-                        <button onclick="deleteMemory('${m.id}')" class="text-slate-500 hover:text-rose-400 transition" title="مسح الذكرى">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
+                        <div class="flex items-center space-x-2 space-x-reverse">
+                            <button onclick="editMemory('${m.id}')" class="text-slate-400 hover:text-amber-400 transition p-1" title="تعديل الذكرى">
+                                <i data-lucide="pencil" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="deleteMemory('${m.id}')" class="text-slate-500 hover:text-rose-400 transition p-1" title="مسح الذكرى">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -658,9 +644,14 @@
                 const jokesList = s.jokes ? s.jokes.split('\n').map(j => `<li class="text-[11px] text-slate-300 light:text-slate-700 font-semibold">• ${j}</li>`).join('') : '';
 
                 card.innerHTML = `
-                    <button onclick="deleteSquad('${s.id}')" class="absolute top-4 left-4 text-slate-600 hover:text-rose-400 transition opacity-0 group-hover:opacity-100">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
+                    <div class="absolute top-4 left-4 flex items-center space-x-1.5 space-x-reverse opacity-0 group-hover:opacity-100 transition">
+                        <button onclick="editSquad('${s.id}')" class="text-slate-400 hover:text-amber-400 transition" title="تعديل الشخصية">
+                            <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <button onclick="deleteSquad('${s.id}')" class="text-slate-500 hover:text-rose-400 transition" title="مسح الشخصية">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
                     <div class="w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-tr from-purple-500 to-amber-500 p-0.5 shadow-lg group-hover:scale-105 transition">
                         <img src="${s.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=300&q=80'}" class="w-full h-full object-cover rounded-[14px]">
                     </div>
@@ -683,9 +674,9 @@
             document.getElementById('statTripsCount').innerText = trips;
         };
 
-        // Handlers
         window.handleMemorySubmit = async function(e) {
             e.preventDefault();
+            const memoryId = document.getElementById('formMemoryId').value;
             const memoryData = {
                 title: document.getElementById('formTitle').value,
                 date: document.getElementById('formDate').value,
@@ -698,14 +689,21 @@
                 createdAt: new Date().toISOString()
             };
 
-            await addDoc(collection(db, "memories"), memoryData);
+            if (memoryId) {
+                await updateDoc(doc(db, "memories", memoryId), memoryData);
+            } else {
+                await addDoc(collection(db, "memories"), memoryData);
+            }
+
             toggleModal('memoryModal');
             document.getElementById('memoryForm').reset();
+            document.getElementById('formMemoryId').value = '';
             document.getElementById('formImage').value = '';
         };
 
         window.handleSquadSubmit = async function(e) {
             e.preventDefault();
+            const squadId = document.getElementById('formSquadId').value;
             const squadData = {
                 name: document.getElementById('squadName').value,
                 role: document.getElementById('squadRole').value,
@@ -714,9 +712,15 @@
                 jokes: document.getElementById('squadJokes').value
             };
 
-            await addDoc(collection(db, "squad"), squadData);
+            if (squadId) {
+                await updateDoc(doc(db, "squad", squadId), squadData);
+            } else {
+                await addDoc(collection(db, "squad"), squadData);
+            }
+
             toggleModal('squadModal');
             document.getElementById('squadForm').reset();
+            document.getElementById('formSquadId').value = '';
             document.getElementById('squadAvatar').value = '';
         };
 
@@ -728,12 +732,46 @@
                 siteTagline: document.getElementById('settingsSiteTagline').value,
                 heroHeading: document.getElementById('settingsHeroHeading').value,
                 heroSubtitle: document.getElementById('settingsHeroSubtitle').value,
+                memoriesHeader: document.getElementById('settingsMemoriesHeader').value,
+                squadHeader: document.getElementById('settingsSquadHeader').value,
                 bgPreset: document.getElementById('settingsBgPreset').value,
                 customBgImage: customBg || ''
             };
 
             await setDoc(doc(db, "settings", "siteConfig"), settingsData, { merge: true });
             toggleModal('editSiteSettingsModal');
+        };
+
+        window.editMemory = function(id) {
+            const memory = localMemories.find(m => m.id === id);
+            if (!memory) return;
+
+            document.getElementById('formMemoryId').value = memory.id;
+            document.getElementById('formTitle').value = memory.title || '';
+            document.getElementById('formDate').value = memory.date || '';
+            document.getElementById('formCategory').value = memory.category || 'سفريات وخروجات';
+            document.getElementById('formLocation').value = memory.location || '';
+            document.getElementById('formImage').value = memory.image || '';
+            document.getElementById('formTagged').value = memory.tagged || '';
+            document.getElementById('formStory').value = memory.story || '';
+            document.getElementById('memoryModalTitleText').innerText = "تعديل الذكرى";
+
+            toggleModal('memoryModal');
+        };
+
+        window.editSquad = function(id) {
+            const squad = localSquad.find(s => s.id === id);
+            if (!squad) return;
+
+            document.getElementById('formSquadId').value = squad.id;
+            document.getElementById('squadName').value = squad.name || '';
+            document.getElementById('squadRole').value = squad.role || '';
+            document.getElementById('squadAvatar').value = squad.avatar || '';
+            document.getElementById('squadQuote').value = squad.quote || '';
+            document.getElementById('squadJokes').value = squad.jokes || '';
+            document.getElementById('squadModalTitleText').innerText = "تعديل بيانات الشخصية";
+
+            toggleModal('squadModal');
         };
 
         window.likeMemory = async function(id, currentLikes) {
@@ -791,14 +829,29 @@
         };
 
         window.openAddMemoryModal = function() {
+            document.getElementById('memoryForm').reset();
+            document.getElementById('formMemoryId').value = '';
+            document.getElementById('formImage').value = '';
+            document.getElementById('memoryModalTitleText').innerText = "تسجيل ذكرى جديدة";
             toggleModal('memoryModal');
         };
 
         window.openAddSquadModal = function() {
+            document.getElementById('squadForm').reset();
+            document.getElementById('formSquadId').value = '';
+            document.getElementById('squadAvatar').value = '';
+            document.getElementById('squadModalTitleText').innerText = "إضافة صاحب جديد";
             toggleModal('squadModal');
         };
 
         window.openDirectTitleEdit = function() {
+            document.getElementById('settingsSiteTitle').value = document.getElementById('uiSiteTitle').innerText.trim();
+            document.getElementById('settingsSiteTagline').value = document.getElementById('uiSiteTagline').innerText.trim();
+            document.getElementById('settingsHeroHeading').value = document.getElementById('uiHeroHeading').innerText.trim();
+            document.getElementById('settingsHeroSubtitle').value = document.getElementById('uiHeroSubtitle').innerText.trim();
+            document.getElementById('settingsMemoriesHeader').value = document.getElementById('uiMemoriesHeader').innerText.trim();
+            document.getElementById('settingsSquadHeader').value = document.getElementById('uiSquadHeader').innerText.trim();
+            
             toggleModal('editSiteSettingsModal');
         };
 
