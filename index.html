@@ -276,23 +276,6 @@
 
     </main>
 
-    <!-- Floating Audio Widget -->
-    <div class="fixed bottom-6 left-6 z-40">
-        <div id="musicPlayer" class="glass-panel p-3 rounded-2xl shadow-2xl border border-slate-700/60 light:border-slate-300 flex items-center space-x-3 space-x-reverse transition-all duration-300 max-w-xs">
-            <button id="playAudioBtn" onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-slate-950 flex items-center justify-center shadow-lg hover:scale-105 transition flex-shrink-0">
-                <i data-lucide="play" id="playIcon" class="w-5 h-5"></i>
-                <i data-lucide="pause" id="pauseIcon" class="w-5 h-5 hidden"></i>
-            </button>
-            <div class="overflow-hidden">
-                <p id="trackTitle" class="text-xs font-bold text-slate-200 light:text-slate-800 truncate">موسيقى هادية ورايقة 🎵</p>
-                <p class="text-[10px] text-amber-400 light:text-amber-600 font-semibold truncate">أجواء زمان وذكريات</p>
-            </div>
-            <audio id="bgAudio" loop preload="none">
-                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-            </audio>
-        </div>
-    </div>
-
     <!-- MODAL 1: ADD / EDIT MEMORY -->
     <div id="memoryModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="glass-panel bg-slate-900 light:bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 border border-slate-800 light:border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
