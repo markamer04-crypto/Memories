@@ -149,6 +149,11 @@
                     <span id="syncStatusText">متصل ومربوط مباشرة ☁️</span>
                 </div>
 
+                <!-- Admin Lock Logo Button -->
+                <button onclick="handleAdminLogoClick()" id="adminLockBtn" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/60 light:hover:bg-slate-200 transition text-slate-300 light:text-slate-700 flex items-center space-x-1" title="لوحة التحكم (أدمن)">
+                    <i data-lucide="lock" class="w-5 h-5" id="adminLockIcon"></i>
+                </button>
+
                 <button onclick="openDirectTitleEdit()" class="p-2.5 rounded-xl glass-panel hover:bg-slate-800/60 light:hover:bg-slate-200 transition text-amber-400 flex items-center space-x-1 space-x-reverse" title="تعديل عناوين وخلفية الموقع">
                     <i data-lucide="image" class="w-5 h-5"></i>
                     <span class="hidden md:inline text-xs font-bold mr-1">تغيير الخلفية والتنسيق</span>
@@ -260,7 +265,7 @@
                 <div class="cursor-pointer group" onclick="openDirectTitleEdit()" title="انقر لتعديل العنوان">
                     <h2 class="text-2xl sm:text-3xl font-black text-slate-100 light:text-slate-900 flex items-center space-x-2 space-x-reverse group-hover:text-amber-400 transition">
                         <i data-lucide="crown" class="w-7 h-7 text-amber-400"></i>
-                        <span id="uiSquadHeader">أابطال بيت المحبة</span>
+                        <span id="uiSquadHeader">أبطال بيت المحبة</span>
                     </h2>
                     <p class="text-xs sm:text-sm text-slate-400 light:text-slate-600 font-semibold mt-1">الناس الجدعان اللي من غيرهم القعدة مالهاش طعم</p>
                 </div>
@@ -478,6 +483,57 @@
         let activeCategory = 'الكل';
         let searchQuery = '';
 
+        // ----------------------------------------------------
+        // ADMIN PASSCODE PROTECTION SYSTEM (Code: 1234)
+        // ----------------------------------------------------
+        const ADMIN_PASSCODE = "1234";
+        let isSiteAdmin = sessionStorage.getItem("isSiteAdmin") === "true";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateAdminUIState();
+        });
+
+        window.handleAdminLogoClick = function() {
+            if (isSiteAdmin) {
+                if (confirm("أنت مسجل كأدمن حالياً. هل تريد قفل وضع التعديل؟")) {
+                    isSiteAdmin = false;
+                    sessionStorage.removeItem("isSiteAdmin");
+                    updateAdminUIState();
+                    alert("🔒 تم قفل وضع التعديل بنجاح.");
+                    location.reload();
+                }
+            } else {
+                const enteredCode = prompt("🔐 أدخل كود المشرف (الأدمن) لتفعيل التعديل:");
+                if (enteredCode === null) return; // Cancelled
+
+                if (enteredCode === ADMIN_PASSCODE) {
+                    isSiteAdmin = true;
+                    sessionStorage.setItem("isSiteAdmin", "true");
+                    updateAdminUIState();
+                    alert("🔓 أهلاً بك يا أدمن! تم تفعيل صلاحيات التعديل بنجاح.");
+                } else {
+                    alert("❌ الكود غير صحيح!");
+                }
+            }
+        };
+
+        function updateAdminUIState() {
+            const btn = document.getElementById('adminLockBtn');
+            const icon = document.getElementById('adminLockIcon');
+            if (!btn || !icon) return;
+
+            if (isSiteAdmin) {
+                btn.title = "وضع الأدمن مفعل (انقر للقفل)";
+                btn.classList.add('bg-amber-500/20', 'border', 'border-amber-500/50', 'text-amber-400');
+                icon.setAttribute('data-lucide', 'unlock');
+            } else {
+                btn.title = "لوحة التحكم (أدمن)";
+                btn.classList.remove('bg-amber-500/20', 'border', 'border-amber-500/50', 'text-amber-400');
+                icon.setAttribute('data-lucide', 'lock');
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
         signInAnonymously(auth)
             .then(() => {
                 document.getElementById('syncStatusText').innerText = "متصل ومربوط مباشرة ☁️";
@@ -659,6 +715,10 @@
 
         window.handleMemorySubmit = async function(e) {
             e.preventDefault();
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، يجب تسجيل الدخول كأدمن أولاً (انقر على علامة القفل بالأعلى).");
+                return;
+            }
             const memoryId = document.getElementById('formMemoryId').value;
             const memoryData = {
                 title: document.getElementById('formTitle').value,
@@ -686,6 +746,10 @@
 
         window.handleSquadSubmit = async function(e) {
             e.preventDefault();
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، يجب تسجيل الدخول كأدمن أولاً.");
+                return;
+            }
             const squadId = document.getElementById('formSquadId').value;
             const squadData = {
                 name: document.getElementById('squadName').value,
@@ -709,6 +773,10 @@
 
         window.handleSiteSettingsSubmit = async function(e) {
             e.preventDefault();
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، يجب تسجيل الدخول كأدمن أولاً.");
+                return;
+            }
             const customBg = document.getElementById('settingsCustomBgImage').value;
             const settingsData = {
                 siteTitle: document.getElementById('settingsSiteTitle').value,
@@ -726,6 +794,10 @@
         };
 
         window.editMemory = function(id) {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، التعديل مخصص للأدمن فقط.");
+                return;
+            }
             const memory = localMemories.find(m => m.id === id);
             if (!memory) return;
 
@@ -743,6 +815,10 @@
         };
 
         window.editSquad = function(id) {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، التعديل مخصص للأدمن فقط.");
+                return;
+            }
             const squad = localSquad.find(s => s.id === id);
             if (!squad) return;
 
@@ -762,12 +838,20 @@
         };
 
         window.deleteMemory = async function(id) {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، الحذف مخصص للأدمن فقط.");
+                return;
+            }
             if (confirm("تأكيد مسح هذه الذكرى؟")) {
                 await deleteDoc(doc(db, "memories", id));
             }
         };
 
         window.deleteSquad = async function(id) {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، الحذف مخصص للأدمن فقط.");
+                return;
+            }
             if (confirm("تأكيد مسح الشخصية؟")) {
                 await deleteDoc(doc(db, "squad", id));
             }
@@ -812,6 +896,10 @@
         };
 
         window.openAddMemoryModal = function() {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، إضافة الذكريات مخصصة للأدمن فقط. انقر على علامة القفل بالأعلى وأدخل الكود.");
+                return;
+            }
             document.getElementById('memoryForm').reset();
             document.getElementById('formMemoryId').value = '';
             document.getElementById('formImage').value = '';
@@ -820,6 +908,10 @@
         };
 
         window.openAddSquadModal = function() {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، إضافة الأبطال مخصصة للأدمن فقط. انقر على علامة القفل بالأعلى وأدخل الكود.");
+                return;
+            }
             document.getElementById('squadForm').reset();
             document.getElementById('formSquadId').value = '';
             document.getElementById('squadAvatar').value = '';
@@ -828,6 +920,10 @@
         };
 
         window.openDirectTitleEdit = function() {
+            if (!isSiteAdmin) {
+                alert("❌ عذراً، تخصيص الموقع مخصص للأدمن فقط. انقر على علامة القفل بالأعلى وأدخل الكود.");
+                return;
+            }
             document.getElementById('settingsSiteTitle').value = document.getElementById('uiSiteTitle').innerText.trim();
             document.getElementById('settingsSiteTagline').value = document.getElementById('uiSiteTagline').innerText.trim();
             document.getElementById('settingsHeroHeading').value = document.getElementById('uiHeroHeading').innerText.trim();
